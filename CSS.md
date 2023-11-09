@@ -480,4 +480,151 @@ p{
 }
 ````
 L'ombreggiatura di un elemento ha la stessa sintassi di quella del testo e vi aggiunge l'ingrandimento:
+````CSS
+.conOmbra{
+	box-shadow: 10px 10px 10px 5px rgba(200,200,200,1);
+}
+````
 
+### Inserire più immagini di sfondo
+Lo standard CSS3 permette di inserire più immagini di sfondo tramite la proprietà background, separando i valori con una virgola
+
+````CSS
+body{
+	background: url(img1.jpg) no-repeat top left,
+	url(img2.jpg) repeat-x bottom left,
+	url(img3.jpg) repeat-y top right;
+}
+````
+
+### Transizioni
+- CSS3 permette di definire anche delle transizioni. Queste proprietà non sono ancora completamente supportate da tutti i browser
+- **transition-property**: la proprietà a cui applicare la transizione
+- **transition-duration**: durata
+- **transition-timing-function**: funzione che modella l'andamento della transizione (*ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier*)
+
+### Impaginazioni CSS3
+- CSS3 definisce tre nuovi modelli di impaginazione
+	- Multi-column layout
+	- Flexible Box Layout
+	- Grid Layout
+- Il primo ha un buon supporto da parte di tutti i browser, gli altri è ben supportato sono nei browser più recenti (*attenzione alla retrocompatibilità!*)
+
+### Colonne per il testo
+````CSS
+.classe{
+	column-count:3;
+}
+
+.classe{
+	column-width:300px;
+}
+````
+
+-> Problema del layout multicolonna!!!
+
+##### Prima soluzione: inline-block
+````HTML
+<ul class="cards">
+	<li>
+		<h2>Card 1</h2>
+		<p>Setting item to <code> display: inline-block</code> can help us...</p>
+	</li>
+	<li>
+		<h2>Card 2</h2>
+		<p>Setting items to <code>display: inline-block</code> can help...</p>
+		<p> This card now has some additional content. </p>
+	</li>
+</ul>
+````
+````CSS
+.cards{
+	margin: 0 -10px;
+	padding: 0;
+	list-style: none;
+}
+
+.cards li{
+	display: inline-block;
+	vertical-align:top;
+	width: calc(33.3333% - 20px);
+	background-color: #fff0f6;
+	border: 1px solid #fcc2d7;
+	margin: 0 10px 20px 10px;
+	padding: 10px;
+	border-radius: 5px;
+}
+````
+
+##### Seconda soluzione: display-table
+- Si divide la lista in tante liste quante sono le righe
+- Si definisce una classe per le liste che identificano le righe
+- Si aggiunge un contenitore che racchiuda tutte le liste
+
+- **Giudizio negativo:** migliore risultato visivo ma non c'è più una netta separazione tra contenuto e presentazione
+	- Questo tipo di layout è stato introdotto per venire incontro ai designer che erano abituati ad utilizzare le tabelle per il layout
+````HTML
+<div class="wrapper">
+	<ul class="cards">
+		<li> <h2>Card 1</h2> <p>...</p></li>
+		<li> <h2>Card 2</h2> <p>...</p></li>...
+	</ul>
+	<ul class="cards">
+		<li> <h2>Card 1</h2> <p>...</p></li>
+		<li> <h2>Card 2</h2> <p>...</p></li>...
+	</ul>
+</div>
+````
+````CSS
+.wrapper{
+	display:table;
+	border-spacing: 20px;
+	margin: -20px;
+}
+.cards{
+	margin:0; padding:0;
+	list-style:none;
+	display: table-row;
+}
+.cards li{
+	display: table-cell;
+	vertical-align:center;
+	background-color: #fff0f6;
+	border: 1px solid #fcc2d7;
+	padding: 10px;
+	border-radius: 5px;
+}
+````
+
+## FlexBox (soluzione 3)
+- Permettono di ottenere lo stesso risultato di prima senza modificare la struttura
+- Il risultato si adatta meglio a qualsiasi dispositivo usato
+
+````CSS
+.cards{
+	margin: 0 -10px;
+	padding:0;
+	list-style: none;
+	display:flex;
+	flex-wrap:wrap;
+}
+
+.cards li{
+	background-color: green;
+	border: 1px solid black;
+	margin: 0 10px 20px 10px;
+	padding: 10px;
+	border-radius: 5px;
+	flex: 1 1 200px;
+}
+````
+
+#### Proprietà flex
+- *flex-direction:* direzione degli elementi flex, per righe o per colonne.
+- *flex-wrap:* permette di andare a capo
+- *flex-basis:* definisce la larghezza (*seflex-direction:row*) o l'altezza (se G*flex-direction:column*) di un elemento. Se 0 lo spazio viene distribuito a seconda di flex grow.
+- *flex-grow:* se uguale a >= 1 l'elemento può crescere per coprire lo spazio rimasto
+- *flex-shrink:* se uguale a >= 1 l'elemento può occupare meno spazio di quello definito inizialmente
+- *flex:* proprietà scorciatoia flex:flex-grow flex-shrink flex-basis
+
+#### Allineamento
