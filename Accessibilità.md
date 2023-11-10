@@ -70,3 +70,53 @@ l'attenzione all'accessibilità, in molti casi, fa parte delle buone regole di p
 	- Si rivolgono agli *sviluppatori di strumenti di navigazione*, dai browser classici agli strumenti specializzati per persone con disabilità
 
 ### Linee guida per l'accessibilità ai contenuti WEB
+- Le linee guida per l'accessibilità ai contenuti web costituiscono un documento di riferimento per i principi generali circa l'accessibilità e per idee riguardanti la progettazione
+- Il documento delle linee guida rappresenta una versione *stabile*: non fornisce quindi informazioni specifiche circa il supporto delle diverse tecnologie da parte di particolari browser, data la rapidità con cui tali informazioni possono variare
+- Al completamento delle linee guida per il web designer, il gruppo WAI ha emesso un documento (**Tecniche relative alle linee guida per l'accessibilità ai contenuti web**) che fornisce tecniche per l'implementazione dei punti di controllo visti precedentemente.
+
+#### Organizzazione delle linee guida
+- **Ciascuna linea guida comprende**:
+	- il numero 
+	- l'obiettivo
+	- la logica dietro la linea guida e alcune categorie di utenti destinate a beneficiarne
+	- Una lista di definizione dei punti di controllo
+- Le definizioni dei punti di controllo presenti in ciascuna delle linee guida spiegano in che modo la specifica linea guida è applicabile in tipici scenari di sviluppo dei contenuti. Ciascuna definizione dei punti di controllo contiene:
+	- Il numero 
+	- L'obiettivo
+	- La priorità
+	- Note informative opzionali, esempi chiarificatori, e riferimenti incrociati
+	- il riferimento ad una sezione del documento sulle tecniche dove sono discusse le implementazioni
+
+#### Priorità
+- Il livello di priorità è basato sull'impatto che tale punto possiede sull'accessibilità
+	- **Priorità 1**
+		- lo sviluppatore **deve** conformarsi al presente punto di controllo, pena le preclusione di una o più categorie di utenti dall'accesso alle informazioni
+		- costituisce un requisito base
+	- **Priorità 2**
+		- Lo sviluppatore **dovrebbe** conformarsi al presente punto di controllo, altrimenti ad una o più categorie di utenti risulterà difficile accedere alle informazioni
+		- Consente di rimuovere barriere significative
+	- **Priorità 3**
+		- Lo sviluppatore **può** tenere in considerazione questo punto di controllo, altrimenti ad una o più categorie di utenti sarà in qualche modo ostacolata nell'accedere alle informazioni
+		- Migliora l'accesso ai documenti web
+
+#### Conformità
+- Sono stati definiti 3 livelli di conformità:
+	- Livello di conformità:"**A**" conforme a tutti i punti di controllo di priorità 1
+	- Livello di conformità: "**Doppia A**"(**AA**) conforme a tutti i punti di controllo di priorità 1 e 2
+	- Livello di conformità: "**Tripla A"(**AAA***) conforme a tutti i punti di controllo di priorità 1, 2 e 3
+
+## I 4 principi fondamentali introdotti dalle WCAG 2.0
+- Un servizio è accessibile quando è **PURO**:
+	- P: percepibile
+	- U: Comprensibile (*Understandable*)
+	- R: Robusto
+	- O: Utilizzabile (*Operable*)
+
+### Principi di progettazione
+- Le linee guida si basano su 2 principi generali:
+1. Assicurare una **Trasformazione elegante**
+	- Le pagine che si trasformano con eleganza rimangono accessibili nonostante le limitazioni dovute a disabilità fisiche, sensoriali e dell'apprendimento, limitazioni causate da barriere tecnologiche
+2. Rendere il contenuto **comprensibile** e **navigabile**
+	- Gli sviluppatori dovrebbero utilizzare un linguaggio chiaro e semplice, fornire meccanismi facilmente comprensibili per la navigazione all'interno della pagina e tra pagine diverse
+
+### Trasformazione elegante
