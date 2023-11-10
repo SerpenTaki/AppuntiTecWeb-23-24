@@ -628,3 +628,54 @@ body{
 - *flex:* proprietà scorciatoia flex:flex-grow flex-shrink flex-basis
 
 #### Allineamento
+*align-items:* dove si allineano i vari elementi (*align-self* è riferito solo a sè stesso)
+- *flex-start*: top del contenitore
+- *flex-end*: bottom del contenitore
+- *center*
+- *stretch*: riempie il contenitore
+*align-content*: richiede *flex-wrap: wrap* e agisce sull'asse y quando il contenitore è più alto dello spazio richiesto dal contenuto. Valore di default: *stretch*
+
+Con tutte queste proprietà i layout flex e grid possono essere equivalenti, ma non è equivalente il supporto dei browser
+
+#### Grid Layout
+- Permette di creare una griglia bidimensionale in cui inserire degli elementi
+- Sono strumenti molto potenti
+- L'unità di misura utilizzata è *fr*, un'unità di misura creata appositamente per le griglie perchè si adatta al layout. è definita come una *frazione dello spazio disponibile*
+````CSS
+.cards{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 20px;
+}
+````
+
+##### Proprietà grid
+*grid-template-columns*(*/rows/areas*): permette di definire template per righe/colonne/aree bidimensionali. In pratica si definisce il numero di righe/colonne *align-items, align-self*.
+*justify-items, justify-self:* (valore di default *stretch*)
+*repeat, auto-fill* (numero di colonne in base allo spazio da occupare, *auto-fit* espande le colonne per riempire tutta la riga)
+````CSS
+.wrapper{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 200px);
+}
+````
+
+###### OSSERVAZIONI
+- Il layout che usano *flex* e *grid* possono diventare molto complicati
+	- è indispensabile che il codice sia valido
+	- Attenzione a non eliminare le liste preferendo un insieme di div
+	- Attenzione  che se l'ordine fisico è diverso dall'ordine visualizzato, la navigazione con tab segue l'ordine fisico
+- **Problema del supporto:**
+````CSS
+@support(display:grid){
+	//per i browser che supportano grid
+	.container{
+		display:grid;
+	}
+}
+````
+
+# Quanto costa il mio sito?
+
+- Ogni volta che aggiungiamo immagini, aumentiamo il tempo di download, e quindi il rendering, del sito. Questo vuol dire aumentare i costi per l'utente finale
+- https://whatdoesmysitecost.com/ permette di vedere il costo del sito nei diversi paesi del mondo
