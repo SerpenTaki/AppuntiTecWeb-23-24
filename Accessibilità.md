@@ -183,4 +183,48 @@ Alcuni principi chiave:
 13. Fornire chiari meccanismi di navigazione
 	- Informazioni per l'orientamento, barre di navigazione, mappa del sito. Tutto quello che può servire ad aumentare la probabilità che una persona trovi quello che sta cercando nel sito
 	- Chiari e coerenti meccanismi di navigazione sono importanti per le persone con invalidità e giovano a tutti gli utenti
-14. 
+14. Assicurarsi che i documenti siano chiari e semplici in modo da poter essere compresi più facilmente
+	- Una disposizione coerente della pagina, una grafica riconoscibile e un linguaggio facile da capire, sono importanti per le persone con invalidità e giovano a tutti gli utenti
+	- L'uso di un linguaggio chiaro e semplice promuove una comunicazione efficace. L'accesso alle informazioni scritte può essere difficile per le persone con disabilità cognitive o dell'apprendimento o persone di diversa madrelingua
+
+# Accessibilità in pratica
+
+### Il testo
+- Usare il markup semantico: **in modo corretto**
+- Il linguaggio usato deve essere il più possibile chiaro
+- Da usare (*migliorano la leggibilità*):
+	- esposizione per punti
+	- Interlinea (*almeno 1.5em*)
+- Da evitare:
+	- testo scorrevole o lampeggiate
+	- font troppo elaborati
+	- sottolineatura per il testo che non costituisce l'ancora di un link
+	- testo barrato se non strettamente necessario
+	- Fare **Attenzione** alle _dimensioni_ e al *colore*
+
+### Microformati
+- [[HTML5]] ha introdotto diversi tag semantici, ma non erano ancora sufficienti
+- I microformati sono un insieme di specifiche sulla marcatura di contenuti create per dare *semantica* (e *metadati*) non disponibili in HTML
+	- ad esempio, *address* non è sufficiente per evidenziare informazioni di contatto
+- L'antenato dei microformati è XFN con l'utilizzo di rel nei link per indicare la relazione con la pagina destinazione
+- Esempio: *rel="me"* per indicare il link alle proprie pagine social
+- In genere i microformati definiscono un insieme di valori per attributi
+	- valori per l'attributo *class* (ex: per le informazioni di contatto)
+	- valori per l'attributo *rel*
+- Ci sono molti microformati diversi per esigenze diverse
+- Sono supportati dai motorio di ricerca che spesso privilegiano i contenuti con microformati
+- Esistono diversi interpreti di microformati per quasi tutti i linguaggi di programmazione
+
+### Attributi data-*
+- Per aggiungere ulteriore semantica [[HTML]] prevede degli attributi che permettono di inserire delle informazione definite dall'utente dentro la pagina
+- sono dati che possono essere personalizzati per ogni pagina, e poi utilizzati tramite Javascript o CSS
+- Il nome dell'attributo deve iniziare con data- non contenere alcuna lettera maiuscola, e almeno un carattere oltre il prefisso
+- il valore può essere una qualsiasi stringa
+- Di default, il browser li ignora
+
+````HTML
+<input type="password" name="pin" required="required" aria-required="true" data-msg-required="Per favore, inserisci la tua password" data-msg-invalid="formato non corretto">
+````
+- Gli attributi dati sono accessibili dalla libreria JS JQuery mediante la proprietà dataset di un elemento, automaticamente convertiti in camel case 
+	`$field.dataset.msgRequired`
+- Aumentano il disaccoppiamento e migliorano la mantenibilità.
