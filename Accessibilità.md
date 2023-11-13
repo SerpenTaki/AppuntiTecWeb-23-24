@@ -120,3 +120,67 @@ l'attenzione all'accessibilità, in molti casi, fa parte delle buone regole di p
 	- Gli sviluppatori dovrebbero utilizzare un linguaggio chiaro e semplice, fornire meccanismi facilmente comprensibili per la navigazione all'interno della pagina e tra pagine diverse
 
 ### Trasformazione elegante
+Alcuni principi chiave:
+- Separare la struttura dalla presentazione
+- Fornire sempre un'equivalente testuale per ogni media diverso dal testo: il testo può essere riprodotto secondo modalità accessibili a quasi tutti gli utenti
+- Creare documenti che  veicolino l'informazione anche se l'utente non può vedere o sentire: fornire informazioni attraverso diversi canali sensoriali alternativi
+- Creare documenti che non necessitino di un HW specifico: le pagine dovrebbero essere utilizzabili anche senza mouse, con piccoli schermi, a bassa risoluzione, in bianco e nero, oppure senza schermo attraverso output di voce o testo
+
+### Contenuto comprensibile e navigabile
+- Dotare la pagina di strumenti di *navigazione* ed *orientamento* ne massimizza l'accessibilità e l'utilizzabilità
+- Non tutti gli utenti sono in grado di utilizzare le indicazioni visive come immagini sensibili, barre di scorrimento proporzionali, frame affiancati, o comunque elementi grafici che possono essere utilizzati solamente da utenti vedenti
+- Gli utenti possono inoltre perdere informazioni relative al contesto qualora possano vedere solo una parte della pagina. Senza informazioni che aiutino l'orientamento, tabelle di grandi dimensioni, elenchi e menù, possono non essere comprensibili per alcune categorie di utenti.
+
+#### Contenuti equivalenti
+- Un contenuto è *equivalente* ad un altro quando entrambi svolgono essenzialmente la stessa funzione o scopo nei confronti dell'utente
+- Particolarmente importante per gli utenti con disabilità
+- Dal momento che il contenuto testuale può essere presentato all'utente sotto forma di sintesi vocale, braille e il testo mostrato visivamente, le linee guida richiedono *equivalenti testuali* per le informazioni grafiche e audio, scritti in modo da veicolare l'intero contenuto essenziale
+- Gli *equivalenti non testuali* (ad es. descrizione uditiva, un video con una persona che usa il linguaggio dei segni) migliorano l'accessibilità anche per le persone che non possono accedere all'informazione visiva o al testo scritto, inclusi molti individui con disabilità della vista, cognitive, dell'apprendimento, dell'udito
+	- Caso CAPTCHA
+
+## Linee guida per l'accessibilità ai contenuti web
+
+1. Fornire alternative equivalenti al contenuto audio visivo
+	- Rimarca l'importanza del fornire contenuti equivalenti per le informazioni non testuali
+	- Fornire contenuto che, presentato all'utente, trasmetta lo stesso scopo o funzione del contenuto audio o visivo
+	- Fornire alternative per immagini, film, suoni, applet, etc...
+	- Fornire equivalenti non testuali (immagini, video audio) del testo scritto è di beneficio per alcuni utenti, specialmente gli illetterati o le persone che hanno difficoltà di lettura
+2. Non fare affidamento sul solo colore
+	- Assicurarsi che testo e grafica siano comprensibili se consultati senza il colore
+		- Se alcune informazioni sono veicolate solo con il colore (es. link non visitati) le persone che non li distinguono o con un monitor in bianco e nero non ricevono l'informazione
+3. Usare marcatori e fogli di stile e farlo in modo appropriato
+	- Marcare i documenti con i corretti elementi strutturali. L'uso di tabelle per l'impaginazione impedisce l'accessibilità e la navigazione con software specialistico
+	- controllare la presentazione con i soli fogli di stile dei browser
+4. Chiarire l'uso dei linguaggi naturali
+	- Utilizzare marcatori che facilitino la pronuncia o l'interpretazione di testi stranieri o abbreviati. Questo aiuta le sintesi vocali e le periferiche braille che possono selezionare automaticamente la nuova lingua
+	- Gli sviluppatori dovrebbero esplicitare le abbreviazioni e gli acronimi
+5. Creare tabelle che si trasformino in maniera elegante
+	- Usare la marcatura corretta per le tabelle, che devono essere usate solo per i dati realmente tabellari e non per il layout
+	- Alcuni interpreti consentono agli utenti di navigare tra le celle delle tabelle e di accedere alle intestazioni e ad altre informazioni nelle celle. A meno che non sia stata realizzata una marcatura corretta, queste tabelle non forniranno agli interpreti le informazioni appropriate.
+6. Assicurarsi che le pagine che danno spazio a nuove tecnologie si trasformino in maniera elegante
+	- Le pagine devono essere accessibili anche quando la tecnologia più recenti non sono supportate o disabilitate
+	- Non sempre l'uso della tecnologia più recente è una buona scelta
+7. Assicurarsi che l'utente possa tenere sotto controllo i cambiamenti di contenuto nel corso del tempo
+	- Gli elmenti in movimento, lampeggianti, scorrevoli o che si autoaggiornano, devono poter essere arrestati temporaneamente o definitivamente
+		- velocità eccessiva
+		- i lettori di schermo non li leggono
+8. Assicurare l'accessibilità diretta delle interfacce utente incorporate
+	- La progettazione delle interfacce utente deve seguire i principi dell'accessibilità: accesso alle diverse funzionalità indipendente dai dispositivi usati, possibilità di operare da tastiera, comandi vocali, etc. Questo deve valere anche per gli oggetti incorporati
+9. Progettare per garantire l'indipendenza da dispositivo
+	-  Usare le caratteristiche che permettono di attivare gli elementi della pagina attraverso una molteplicità di dispositivi di input
+	- Accesso indipendente dal dispositivo significa che gli utenti possono interagire con l'interprete o con il documento con il dispositivo di I/O preferito
+	- Fornendo equivalenti testuali per immagini sensibili o per immagini usate come collegamento si dà agli utenti la possibilità di interagire con esse senza un dispositivo di puntamento
+	- Se una pagina permette di interagire con la tastiera in genere è accessibile anche tramite input vocale o interfaccia a linea di comando
+10. Usare soluzioni provvisorie
+	- usare soluzioni provvisorie in modo che le tecnologie assistive e i browser più vecchi possano operare correttamente
+	- I punti di controllo di questa linea guida sono classificati come *provvisori*, nel senso che il gruppo di lavoro li ritiene validi e necessari per l'accessibilità del web *al momento della pubblicazione del documento*
+11. Usare le tecnologie e le raccomandazioni del W3C
+	- Se questo non è possibile, oppure se utilizzando una specifica W3C si ottiene materiale che non si trasforma in modo elegante, fornire una versione alternativa del contenuto accessibile
+	- Le tecnologie W3C contengono elementi di accessibilità *integrati*
+	- Molti formati non W3C come shockware e PDF richiedono *plug-in* o applicazioni autonome
+12. Fornire informazioni per la contestualizzazione e l'orientamento per aiutare gli utenti a comprendere pagine od elementi complessi
+	- Fornire informazioni contestuali può essere utile per tutti gli utenti. Relazioni complesse tra parti di una pagina possono essere difficili da interpretare per persone con invalidità cognitive o visive
+13. Fornire chiari meccanismi di navigazione
+	- Informazioni per l'orientamento, barre di navigazione, mappa del sito. Tutto quello che può servire ad aumentare la probabilità che una persona trovi quello che sta cercando nel sito
+	- Chiari e coerenti meccanismi di navigazione sono importanti per le persone con invalidità e giovano a tutti gli utenti
+14. 
