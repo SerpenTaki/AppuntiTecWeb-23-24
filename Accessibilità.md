@@ -228,3 +228,195 @@ Alcuni principi chiave:
 - Gli attributi dati sono accessibili dalla libreria JS JQuery mediante la proprietà dataset di un elemento, automaticamente convertiti in camel case 
 	`$field.dataset.msgRequired`
 - Aumentano il disaccoppiamento e migliorano la mantenibilità.
+
+### Accessibilità in pratica: i link
+- I link sono elementi fondamentali per il web, perciò è molto importante che siano accessibili a tutti gli utenti
+- Alle origini del web i link erano facilmente riconoscibili, perchè costituiti da parole (o frasi) scritte in blu e sottolineate
+- Oggi il web designer può personalizzare come presentare un link
+	- L'utente deve poter riconoscere i link già visitati
+- Alcuni web designer, tra cui Jakob Nielsen, sostengono che non si debba variare il colore dei link per non disorientare i link già visitati
+- Alcuni web designer, tra cui Jackob Nielsen, sostengono che non si debba variare il colore dei link per non disorientare gli utenti
+- è importante una corretta definizione delle ancore dei link
+	- clicca qui
+	- prosegui
+#### Personalizzazione dell'aspetto dei link
+- Mai utilizzare convenzioni ben consolidate per scopi diversi
+	- Coerenza vs. personalizzazione (*link tipizzati*)
+#### Uniformità vs. differenziazione dei link
+- I link devono essere facilmente riconoscibili
+	- rappresentazione uniforme
+- L'introduzione di alcune differenziazioni può aiutare l'utente a fare una previsione sulla destinazione e sui tempi necessari
+	- link interni vs esterni
+	- Link tipizzati
+	- Indicare la dimensione del file nel caso di un download
+
+- I link devono essere riconoscibili univocamente
+	- Test ad occhi socchiusi (*Drue Miller*)
+- Evitare i pop-up
+- I link devono essere accessibili anche ad utenti con disabilità o dispositivi meno tecnologicamente avanzati
+	- Utilizzo controllato di immagini
+	- Definizione corretta della tabulazione
+		- immaginare i bisogni degli utenti e stabilire un ordine di tabulazione in base a questi
+	- Utilizzo di accessKey
+		- Non esiste un modo visuale di far conoscere agli utenti le chiavi utilizzate
+		- Possibilità di conflitti con le chiavi utilizzate da altri programmi
+
+````HTML
+<a href="http://wwww.server.com/path/doc.html" tabindex="1" accesskey="s"> Sorgente del link </a>
+
+<a href="http://www.server.com/path/doc.html" tabindex="1" accesskey="s"> Sorgente del link (s) </a>
+````
+
+### Suggerimenti per gli screen-reader
+- I link adiacenti devono essere separati da almeno uno spazio
+- Un utente non deve perdere molto tempo nella lettura di tutte le possibilità offerte dal menù
+
+````HTML
+<a class="aiuti" href="#contenuto"> Salta la navigazione </a>
+<nav id="menu"> ...tutto il menù...</nav>
+<main id="contenuto">
+	tutto il contenuto
+</main>
+````
+````CSS
+.aiuti{
+	display:none;
+}
+.aiuti{
+	visibility:hidden;
+}
+.aiuti{
+	position:absolute;
+	height:0;
+	overflow:hidden;
+}
+/*ALTRI MODI: UTILIZZO DEI RIENTRI*/
+.aiuti{
+	text-indent:-999em;
+}
+.aiuti{
+	position:absolute;
+	left:-999em;
+}
+.aiuti{
+	overflow:hidden;
+	text-indent: 100%;
+	white-space: no-wrap;
+	width: 10px;
+}
+````
+
+### Accessibilità in pratica: i bottoni
+Ci sono 4 modi di creare un bottone (ma uno solo da preferire)
+- `<input type = 'submit'/>`
+- `<button type = "submit"/>`
+- Utilizzo di a + CSS + Javascript
+- Utilizzo di div + CSS + Javascript
+Solo i primi 2 sono attivabili tramite lo spazio.
+I **div** non ricevono il focus con i tab a meno di non introdurre un *tabindex* e richiedono maggior sforzo con javascript per permettergli di inviare dei moduli e interagire con la tastiera. Sia a che div richiedono l'attributo *role="button"* per essere accessibili. *Ha senso tutto questo lavoro in più?*
+
+#### Nono introdurre fragilità!
+*Potenziali problemi*:
+- Il browser non supporta i CSS, oppure sono disattivati per migliorare le prestazioni o l'utente ha un foglio di stile personalizzato per accessibilità o altre preferenze
+- Un problema di rete non rende disponibili CSS o Javascript
+- Le regole CSS appaiono in una media query e il browser non le supporta
+- Javascript è disattivato
+- Un firewall ha bloccato le richieste del JavaScript
+- Un errore JavaScript di terze parti, o un bug del codice, ha bloccato l'esecuzione del JavaScript
+- Il browser, o la tecnologia assistiva, non supporta ARIA
+
+### Accessibilità in pratica: le immagini
+- Devono essere inserite con il tag *img* solo le immagini che costituiscono parte del contenuto
+- Le immagini che riguardano il solo layout dovrebbero essere inserite come immagini di background
+- Definire sempre attributi *alt* significativi
+	- Logo
+	- Alt vuoto per le immagini che riguardano il solo layout
+	- Non fidatevi degli alt generati automaticamente
+- Non usare mappe immagine, specialmente quelle lato server
+- Controllare se il sito rimane accessibile anche senza immagini
+
+## Image Replacement: alternative grafiche al testo
+- Visto che non si può fare affidamento sui font installati sul computer dell'utente, spesso si utilizzano immagini al posto del testo per ottenere una grafica accattivante con grave danno all'accessibilità del sito web
+- *Image Replacement*: è una tecnica usata per fornire alternative grafiche per il testo, rimpiazzandolo con delle immagini tramite CSS
+- Vantaggi.
+	- La pagina rimane accessibile
+	- Viene preservata la grafica
+	- Si utilizzano gli standard web e non soluzioni ad hoc proprietarie
+	- è possibile modificare le immagini, se necessario, modificando solo il foglio di stile
+
+#### Image Replacement: prima soluzione
+- Idea di base nascondere il testo e collocare un'immagine nello sfondo del contenitore "vuoto"
+	- I *browser* visualizzano l'*immagine*
+	- gli *screen* reader leggono il *testo*
+````HTML
+<h1><span>Sifaka</span></h1>
+````
+````CSS
+h1{
+	background-image: url(...);
+	width: largh. img;
+	height: alt. img;
+}
+
+h1 span{
+	display:block;
+	height:0;
+	overflow:hidden;
+}
+````
+#### Seconda soluzione
+````HTML
+<h1>Sifaka</h1>
+````
+````CSS
+h1{
+	position:relative;
+	width: largh. img;
+	height: alt. img;
+	font-size: 1px;	
+	text-indent: -999em;
+}
+/*PROBLEMA: se le immagini sono disabilitate non si vede nulla*/
+````
+#### Terza soluzione
+````HTML
+<h1><span></span>Sifaka<h1>
+````
+````CSS
+h1{
+	position:relative;
+	width: largh. img;
+	height: alt. img,
+	font-size: 50px;
+}
+
+h1 span{
+	position:absolute;
+	top:0;
+	width: largh. img;
+	height: alt. img;
+	background-image: url(...);
+}
+````
+- Lo span deve avere la stessa dimensione dell'immagine e questa non può avere sfondo trasparente
+	- Problemi al ridimensionamento del layout
+- http://mezzoblue.com/tests/revised-image-replacement
+#### Quarta soluzione
+````HTML
+<h1 class="hide">Sifaka</h1>
+````
+````CSS
+.hide{
+	text-indent:100%;
+	white-space:nowrap;
+	overflow:hidden;
+}
+h1.hide{
+	background-image: url(...);
+}
+````
+### Non usare solo testo!
+- Le immagini permettono di catturare meglio l'attenzione dell'utente
+- Le infografiche possono aiutare le persone con disabilità cognitive a capire e memorizzare meglio il contenuto
+
+### Accessibilità in pratica: le tabelle
