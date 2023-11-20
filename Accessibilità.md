@@ -420,3 +420,247 @@ h1.hide{
 - Le infografiche possono aiutare le persone con disabilità cognitive a capire e memorizzare meglio il contenuto
 
 ### Accessibilità in pratica: le tabelle
+- è sempre preferibile evitare l'uso delle tabelle per creare il layout di un sito. Se proprio necessario, usare tabelle semplici può aiutare l'accessibilità
+- Il problema più rilevante riguarda la bidimensionalità delle tabelle: le associazioni righe-colonne sono facilmente rilevabili con gli occhi, ma difficilmente spiegabili facendo affidamento solo sull'udito perchè gli *screen-reader* linearizzano le tabelle.
+- Alcuni accorgimenti che possono aiutare:
+	- associare, una breve descrizione del contenuto della tabella (attributo *summary* in XHTML, *aria-describedby* in HTML5)
+	- associare le intestazioni alle celle (attributo *scope*)
+	- associare le celle alle intestazioni (attributo *headers*)
+	- definire abbreviazioni per le intestazioni (attributo *abbr*)
+![[Pasted image 20231120121300.png]]
+````HTML
+<table summary="La tabella contiene l'elenco dei libri della biblioteca. Ogni riga descrive un libro con titolo, autore, editore, data edizione e prezzo">
+	<caption>Libri della Biblioteca</caption>
+	<tr><th scope="col">Titolo</th><th scope="col">Autore</th>
+		...
+	</tr>
+	<tr><td scope="row">Il mastino di Baskerville</td>
+		<td xml:lang="en">Conan Doyle</td>
+		<td> Fabbri Editore </td>
+	</tr>
+	<tr>...
+	</tr>
+</table>
+
+<!--OPPURE-->
+
+<table aria-desribedby="descr">
+	<caption>Libri della Biblioteca</caption>
+	<tr><th scope="col">Titolo</th><th scope="col">Autore</th>
+		...
+	</tr>
+	<tr><td scope="row">Il mastino di Baskerville</td>
+		<td xml:lang="en">Conan Doyle</td>
+		<td> Fabbri Editore </td>
+	</tr>
+	<tr>...
+	</tr>
+</table>
+
+<p id="descr">La tabella contiene l'elenco dei libri della biblioteca. Ogni riga descrive un libro con titolo, autore, editore, data edizione e prezzo</p>
+````
+![[Pasted image 20231120121937.png]]
+````HTML
+<table border="1">
+	<tr><th></th>
+		<th id="c1" abbr="Lun" axis="giorno">Lunedì</th>
+		<th id="c2" abbr="Mar" axis="giorno">Martedì</th>
+		<th id="c3" abbr="Mer" axis="giorno">Mercoledì</th>
+		<th id="c4" abbr="Gio" axis="giorno">Giovedì</th>
+		<th id="c5" abbr="Ven" axis="giorno">Venerdì</th>
+	</tr>
+	<tr><th id="m1" axis="materia"> Italiano</th>
+		<td></td><td></td><td></td><td></td><td></td>
+	</tr>
+	<tr><td id="o1" axis="ora">8.00</td>
+		<td headers="m1 c1 o1">1s</td>
+		<td headers="m1 c2 o1"></td>
+		<td headers="m1 c3 o1"></td>
+		<td headers="m1 c4 o1">3d</td>
+		...
+</table>
+````
+### Tabelle responsive
+**NB: nel Laboratorio usiamo le tabelle responsive che permettono di _adattare_ la tabella anche per i dispositivi mobili _Bisogna FARLO sempre per accessibilità_**
+![[Pasted image 20231120123443.png]]
+**L'idea (Aaron Gustafson)**
+- Ogni cella ha un attributo *data-title* che riporta l'intestazione di colonna
+- Negli schermi piccoli il CSS si preoccupa di:
+	- Rendere *tr* e *td* elementi di blocco per visualizzarli uno per riga (`display:block;`)
+	- Non visualizzare gli header (*thead*)
+	- Aggiungere un'intestazione ad ogni cella prendendola dall'attributo *data-title* (con la proprietà content)
+````HTML
+<tr><th id="sheldon" xml:lang="en" headers="personaggio">Sheldon Cooper</th>
+	<td headers="personaggio sheldon specializzazione" data-title="Specializzazione">Fisica</td>
+	<td headers="personaggio sheldon qi" data-title="QI">183</td>
+	<td class="centerText" conlspan="4" headers="sheldon presente in prima Stagione secondaStagione terzaStagione quartaStagione" data-title="Stagioni 1,2,3,4">Presente</td>
+</tr>
+...
+````
+````CSS
+thead, tfoot{
+ display: none;
+}
+tr, th, td {
+	display:block;
+	padding:0;
+	white-space:normal;
+}
+th[data-title]:before, td[data-title]:before{
+	content: attr(data-title)":\00A0"
+	font-weight:bold;
+}
+th{
+	background-color: #BD091B;
+	color: #FFF;
+}
+td, th {
+	border-top:none;
+}
+tr:first-child{
+	border: 1px solid #000;
+}
+````
+### Accessibilità in pratica: i form
+- Per creare form accessibili è necessario:
+	- corredare sempre i campi dei form con delle etichette (*label*). L'elemento label è particolarmente importante per check-box e pulsanti radio
+	- raggruppare le voci con *optgroup* o *fieldset*
+	- utilizzare *tabindex* e *accesskey* in modo appropriato nei tag *input, textarea, select*
+	- utilizzare *title* per fornire informazioni aggiuntive
+	- Fornire aiuti contestuali
+	- Rendere gli errori reversibili
+### Accessibilità in pratica: il colore
+- Controllare sempre che la pagina sia accessibile agli utenti che non sono in grado di vedere il colore
+- Se l'informazione è veicolata tramite il colore deve essere rinforzata
+	- ex. grassetto o sottolineatura per i link
+- Evitare i riferimenti al colore nel testo
+	- ex. "*fare click sul pulsante giallo*", "*Troverete questa informazione sul box azzurro*"
+- Attenzione agli schemi cromatici troppo armoniosi
+	- il rapporto di contrasto tra testo e grafica sottostante deve essere di almento 4.5:1 o 3:1 per testo grande (*fanno eccezione logotipi ed elementi di pura decorazione*)
+	- www.vischeck.com, https://color.a11y.com
+![[Pasted image 20231120132122.png]]
+#### Diversi tipi di contrasto
+- Contrasto *chiaro-scuro*
+- Contrasto di complementari
+- Contrasto *caldo-freddo*
+- Contrasto di saturazione
+![[Pasted image 20231120132223.png]]
+![[Pasted image 20231120132235.png]]
+-> Guardare La _Color Universal Design Organization (**CUDO**) Palette_
+-> oppure la *Palette di Brian Suda* che contiene colori riconoscibili dagli utenti con difficoltà nella percezione dei colori ma è adatta anche alla stampa dato che si traduce bene con i toni di grigio
+
+## Strumenti per testare/scegliere i colori
+- **Per testare i colori**
+	- Color Oracle (https://colororacle.org/)
+	- Color Contrast Accessibility Validator (https://color.a11y.com)
+	- Color Contrast Analyzer (CCA)
+- **Per aiutare nella scelta dei colori**
+	- Color safe (http://colorsafe.co/)
+
+## WAI-ARIA
+- *W*eb *A*ccessibility *I*nitiative - *A*ccessible *R*ich *I*nternet *A*pplications (ARIA) è uno standard W3C
+- è pensato per le pagine web particolarmente interattive, sviluppate con HTML5, Javascript e Ajax, per permettere la loro fruizione anche attraverso gli screenreader
+- Definiscono *ruoli, stati* e *proprietà* per ogni widget di interazione
+- Assegna un ruolo semantico ad ogni componente della pagina
+- Non cambiano in alcun modo la pagina, nè il DOM, ma contribiscono a migliorare l'accessibilità
+### Ruoli
+- Ogni elmento HTML ha un ruolo implicito
+	- Ex. link
+- L'attributo *role* permette di rendere esplicito il ruolo di un elemento.
+- Definisce qual'è la funzione di un elemento. In molti casi replica il valore semantico dei tag HTML5
+	- Ex: *role="navigation" (< nav >), complementary (aside), main, contentinfo (copyright)*
+- Oppure altri elementi della pagina
+	- Ex: role="banner", "search", "tabgroup", "tab", ecc...
+- Quando è possibile sono da preferire i tag HTML5
+- alert: indica contenuti che vanno segnalati subito all'utente
+- alert dialog: come il precedente ma il focus viene spostato su un elemento al suo interno
+- presentation: elimina il significato semantico dell'elemento. Viene usato per nascondere elementi alle tecnologie assistive (ignorato su button e a)
+- menubar, menu, menuitem
+- img, math
+- Lista completa ruoli (W3C editor draft):
+	- https://www.w3.org/WAI/PF/aria/roles
+### Stati
+- Gli stati si definiscono con delle proprietà speciali che descrivono le condizioni correnti degli elementi
+	- Ex *aria-disabled="true", aria-relevant="all"*
+	- Gli stati, a differenza delle proprietà, possono variare durante il ciclo vitale di un'applicazione, in genere tramite JavaScript
+
+# Regole ARIA
+**Prima regola**: se puoi usare un elemento o un attributo HTML specifico, usa quello piuttosto di usare un elemento con significato diverso e aggiunge un ruolo ARIA
+- `<main>` e non `<div role="main">`
+**Seconda regola:** non cambiare la semantica se non sei davvero obbligato
+- `<div role="tab"><h2> testo tab </h2></div>` e non mettere il ruolo nel h2
+**Terza regola:** tutti i controlli interattivi *ARIA* devono essere usabili da tastiera
+- Ex. assicurarsi che tutto ciò che ha un `role=button` sia raggiungibile da tastiera
+**Quarta regola**: non usare `role="presentation" o aria-hidden="true"` su elementi che possono ricevere il focus altrimenti alcuni utenti potrebbero arrivare con il focus su elementi null
+- utilizzare `tabindex="-1"`
+**Quinta regola:** tutti gli elementi interattivi devono avere un'etichetta accessibile
+- `<label>` oppure *aria-label*
+La validazione richiede un validatore specifico e il doctype di HTML5
+- http://validator.w3.org/nu/
+
+### Accessibilità in pratica: i CAPTCHA
+*C*ompletely *A*utomated *P*ublic *T*uring-test-to-tell *C*omputers and *H*umans *A*part:
+Test sottoposto agli utenti per garantire la sicurezza di un servizio online discriminando esseri umani dai programmi informatici (bot), permettendo l'accesso ai primi e bloccando i secondi ... *in teoria* :(
+-> non sono molto accessibili
+![[Pasted image 20231120140939.png]]
+
+## Accessibilità in pratica: regole generali
+- il primo passo per raggiungere l'accessibilità di un sito web è utilizzare l'HTML in modo semanticamente corretto
+- Utilizzare gli standard web e non soluzioni proprietarie
+- In generale i layout fluidi o elastici per loro natura facilitano l'accessibilità di un sito web
+- Evitare:
+	- frame
+	- applet
+	- mappe immagine, specialmente lato server
+	- tutto ciò che fa riferimento a caratteristiche spaziali (ex. i menù a cascata che devono essere visitati con i tab)
+### Validazione dell'accessibilità
+- Occorrono sia strumenti automatici che la revisione umana tramite test di utilizzo
+	- I metodi automatici sono rapidi e convenienti ma non riescono a identificare tutti i problemi di accessibilità #copertaCorta
+	- La revisione umana è più efficace ma costosa. Può assicurare la chiarezza di linguaggio e la facilità di navigazione
+#### Alcuni metodi di validazione
+- Usare uno strumento di accessibilità automatico e uno di validazione browser
+- Validare la sintassi (HTML, CSS, etc.)
+- Validare i fogli di stile
+- Usare differenti browser grafici (*con suoni e immagini caricati/non caricati, senza mouse, con script, fogli di stile e script non caricati*) browser vecchi e nuovi
+- Usare browser o emulatori solo testuali (**Links**)
+- Usare uno screen reader, software per ipovedenti (magnifier), un display piccolo etc...
+- Usare i controlli automatici di spelling e grammatica
+- Rivedere la chiarezza e la semplicità del documento
+- Invitare persone con disabilità a revisionare i documenti
+##### Strumenti commerciali
+- Firefox Web Developer Toolbar
+- Chrome Device Emulation
+- Silktide-> estensione Chrome che emula diversi tipi di disabilità
+- Total validator
+- Wave di Webaims
+- ARC Toolkit
+###### Che cosa devo testare?
+Purtroppo le linee guida e le leggi, pur essendo molto chiare sugli obiettivi, non lo sono altrettanto sui test da fare
+
+### Accesibilità e usabilità
+- Garantire l'accessibilità da un punto di vista tecnico non è abbastanza per rendere un sito facile da utilizzare. La vera questione è se gli utenti possono ottenere quello che vogliono da un sito web in un tempo ragionevole e se la visita è piacevole (*J.Nielsen*)
+- Accessibilità *non* è sinonimo di usabilità, ed è fondamentale sottolineare che non può esserci usabilità senza accessibilità. Un sito web progettato per ridurre le barriere all'accesso non ottiene, quale effetto secondario, un abbassamento delle barriere dovute a scarsa usabilità
+#### Definire l'usabilità IEE & ISO
+- _“La facilità con la quale un utente può imparare ad operare, a predisporre l’input
+e a interpretare l’output di un sistema o di una componente”_
+- _“L’efficacia, l’efficienza e la soddisfazione con la quale determinati utenti
+raggiungono scopi specifici in determinati ambienti.” 
+
+- **EFFICACIA**: l'accuratezza e la completezza con la quale determinati utenti raggiungono scopi specifici in determinati ambienti
+- **EFFICIENZA:** rapporto tra le risorse impiegate e l'accuratezza e la completezza degli scopi raggiunti
+- **SODDISFAZIONE**: il confort e l'accettabilità del sistema rispetto agli utenti e ad altri soggetti condizionati dal sistema stesso
+
+#### Definire l'usabilità
+- _“L’usabilità è la misura della qualità dell’esperienza dell’utente che interagisce
+con qualcosa – un sito web, un’applicazione software tradizionale o qualsiasi altro
+artefatto con il quale l’utente può operare con specifiche modalità.” [J. Nielsen]_
+
+## Requisiti emergenti di web-usability (Visciola)
+- Maggiore attenzione al fatto che il web è attualmente un contenitore di informazioni e servizi. 6 requisiti emergenti:
+1. **Navigabilità:** esistenza di un sistema di navigazione che aiuti a orientarsi nel sito e a cercare informazioni
+2. **Utilità attesa**: la disponibilità nel sito di informazioni che corrispondano alle aspettative degli utenti
+3. **Completezza dei contenuti:** la presenza di informazioni a livello di dettaglio desiderabile per gli utenti
+4. **Compresibilità delle informazioni**: la forma e la qualità con cui l'informazione viene presentata nel sito 
+5. **Efficacia comunicativa:** misura la credibilità del sito, la pertinenza delle informazini rispetto al profilo del ssito
+6. **Attrattività grafica:** la qualità del layout grafico del sito
+
