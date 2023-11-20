@@ -8,5 +8,7 @@ qui troverete:
 - Accessibilità (WIP)
 - PHP (WIP NS)
 - JS (WIP NS)
+- Caratteristiche di progettazione e design di siti web (WIP)
+- SEO (*Search Engine Operation*)
 
 Per godere al meglio degli appunti si consiglia di usare obsidian
