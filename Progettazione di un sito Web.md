@@ -97,4 +97,33 @@
 	- Seguire convenzioni diverse solo se il tornaconto è davvero alto
 	- Rispettare *sempre* le *convenzioni interne*
 	- Facilitare la creazione di una mappa mentale
-- L'utente del web è in genere frettoloso e impaziente. Può non avere uno sco
+- L'utente del web è in genere frettoloso e impaziente. Può non avere uno scopo preciso, ma nel caso ce l'abbia, il numero di operazioni necessare per raggiungerlo determina la "*bontà*" del sito
+### L'audience è locale o globale?
+- Nel primo caso si suppone di conoscere bene l'audience, nel secondo si aprono 2 scelte
+- **Globalizzazione o Internazionalizzazione**
+	- Processo di creazione di un documento che possa avere successo in differenti culture e mercati senza modifiche
+- **Localizzazione**
+	- Progettazione di un documento il cui aspetto e il cui contenuto fanno pensare di essere stato creato da una persona proveniente da uno specifico paese o da una specifica area culturalmente omogenee
+#### Internazionalizzazione e localizzazione
+- **Internazionalizzazione**
+	- Quando lo stesso sito può essere usato in tutti i paesi (*ad esempio su ogni pagina posso cambiare lingua*)
+- **Localizzazione**
+	- Quando vengono realizzate diverse versioni locali del sito
+##### Che cosa può cambiare?
+- la lingua
+- l'alfabeto
+- La direzione di lettura del testo
+- La valuta
+- Gli indirizzi
+- L'ora e il formato della data
+- I sistemi di misura
+- La cultura
+- Le convenzioni sociali
+- ....
+![[Pasted image 20231123120055.png]]
+https://arabi.ps/ *i siti arabi sono con il testo che parte da destra a sinistra*
+#### Localizzazione
+- Il contesto culturale in cui è "*immerso*" il ricevente di un processo di comunicazione è fondamentale per la comprensione delle sue aspettative.
+- Quando entrano in gioco componenti di natura culturale non si parla più solo di traduzione ma di localizzazione
+![[Pasted image 20231123120724.png]]
+![[Pasted image 20231123120737.png]]
