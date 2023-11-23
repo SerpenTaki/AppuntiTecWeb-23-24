@@ -74,3 +74,27 @@
 - Web vs Carta
 	- I testi devono permettere una rapida lettura, possono essere realizzati per punti
 	- Fondamentale l'utilizzo di un correttore di bozze specialmente per le parti in lingua straniera
+
+*Dire che alcuni elementi contestuali basilari come colore dei link, la disposizione della pagina, i sistemi di navigazione e la gerarchia visiva sono noiosi o banali è come dire che il volante di un'auto fa ridere perchè manca di immaginazione.* _**-J. Veen**_
+
+### Modelli e metafore
+- Un modello mentale è una rappresentazione di un sistema fisico o di un software in esecuzione su un calcolatore con una plausibile cascata di associazioni causa-effetto tra input e output
+- Un modello non necessariamente è accurato, ma aiuta la persona a prevedere cosa succedrerà in una certa situazione
+- Il modello serve come contesto per l'analisi, la comprensione e la presa di decisioni
+#### Modelli mentali per il web
+- Ogni utente, durante la propria navigazione, porta con sè un certo modello mentale
+	- modalità di interazione
+	- aspettative dell'utente
+- Si deve tener presente che la navigazione, oltre ad essere determinata dalle modalità di interazione proprie di ogni utente, viene anche fortemente influenzata da 3 fattori:
+	- la struttura del contenuto
+	- gli strumenti di navigazione forniti e 
+	- la strategia di *browsing*:
+		- breadth first
+		- dept first
+		- random
+- Regole fonfamentali
+	- è fondamentale riconoscere le *convenzioni esterne* e possibilmente non infrangerle
+	- Seguire convenzioni diverse solo se il tornaconto è davvero alto
+	- Rispettare *sempre* le *convenzioni interne*
+	- Facilitare la creazione di una mappa mentale
+- L'utente del web è in genere frettoloso e impaziente. Può non avere uno sco
