@@ -194,4 +194,169 @@ Esempi:
 - Non richiedere di uscire dall'ambiente per completare il task
 - Non usare shortcut mnemonici
 ![[Pasted image 20231127120201.png]]
-49/119
+### Problema dell'area visibile
+- In un giornale, la prima metà della pagina è quella più visibile. In gergo si chiama "*above the fold*" sopra la piega
+	- Le informazioni più importanti vengono messe qui
+	- La pubblicità in quest'area è più costosa
+- Nelle pagine web quest'area corrisponde alla porzione di pagina visibile su tutti i dispositivi senza usare la barra di scroll
+	- difficoltà di determinazione dell'**area sicura**
+#### Area sicura
+- Per la visualizzazione, l'area sicura corrisponde ai pixel disponibili per visualizzare l'informazione di una pagina web
+- Dipende da:
+	- configurazione hw e sw
+	- browser utilizzato
+	- preferenze dell'utente
+##### Cosa mettere nell'area sicura
+- **Tutto**
+	- ideale ma non realistico e fattibile
+- Una selezione degli elementi che compongono il layout:
+	- Elementi informativi fondamentali
+	- Elementi fondamentali per l'interazione
+		- Ex *casella di ricerca*
+	- Elementi grafici che costituiscono l'identità del sito
+		- Ex *logo*
+### Creazione del contesto tramite impaginazione
+- Schema a 3 pannelli
+	- Dove sono? (*header, banner con il titolo o le breadcrum*)
+	- Dove posso andare? (*menù laterale*)
+	- Di cosa si tratta? (*contenuto vero e proprio*)
+![[Pasted image 20231128081740.png]] ![[Pasted image 20231128081808.png]]
+#### Altre informazioni utili
+- Una volta considerati i punti fondamentali espressi dalle 3 domande precedenti, ci sono altre informazioni che particolari classi di utenti possono trovare utili
+	- Come sono arrivato qui?
+	- Da chi è gestita questa pagina?
+	- Dove posso trovare informazioni più approfondite?
+	- Altre informazioni relative al particolare sito web
+### Dove sono?
+- La risposta a questa domanda può essere trovata nel titolo della pagina
+- Se scelto bene, un buon titolo aumenta la probabilità che un sito venga selezionato tra una lista di risultati di un motore di ricerca
+	- Titoli possibilmente brevi
+	- Dal particolare al generale e non viceversa
+- Le barre di contesto risolvono in modo più completo il problema perchè indicano anche il percorso (parziale) fatto per arrivare in quel punto
+- Mappe: strumento esterno
+##### Esempio titoli
+- Corso di laurea in Statistica ed Informatica per la Gestione delle Imprese – Università Ca’ Foscari
+-  Università Ca’ Foscari - Corso di laurea in Statistica ed Informatica per la Gestione delle Imprese
+-  SIGI - Università Ca’ Foscari (*questo va bene per le pagine non per le matricole ma per gli studenti che navigano da un po' magari sul sito per consegnare la tesi*)
+-  CdL in Statistica ed Informatica per la Gestione delle Imprese – Università Ca’ Foscari (*questo titolo migliore per la questione delle tab aperte che tagliano tutto*)
+
+### Dove posso andare?
+- Insieme dei link contenuti nella pagina
+- Nel modello a 3 pannelli, questi sono raccolti nella barra di navigazione (o almeno la maggior parte)
+- è importante non tradire le aspettative dell'utente
+	- Il linguaggio CSS [*pdf (link)* 100kb]
+- Strumenti di navigazione ed orientamento
+### Interfaccia a schede
+
+![[Pasted image 20231128083635.png]]
+- è una convenzione molto utilizzata perchè ben conosciuta dagli utenti
+- In genere ogni scheda rappresenta un aspetto diverso di uno stesso compito o task
+	- **Amazon:** oggetti da acquistare
+	- **Lycos:** servizio specifico
+- Gli utenti devono avere le idee chiare, non sono utili per un browsing generico
+### Design LSD
+![[Pasted image 20231128084004.png]]
+- I servizi di directory nascono con l'idea di creare una mappa ragionevole di quanto è presente nel web
+- Categorie e sottocategorie
+- Design **LSD**: *L*ogo, Casella di ricerca (*S*earch) e *D*irectory
+- Questo schema si basava sulla semplicità: una volta imparato si possono utilizzare facilmente molte pagine web
+- è importante dimensionare correttamente la casella di ricerca che può essere corredata da un menù a tendina che contestualizzi la ricerca all'interno di un'unica sezione del sito
+## Design fluido
+- Un design fluido (anche detto *liquido*) prevede la possibilità di variare le caratteristiche del dispositivo per visualizzare la pagina senza perderne l'usabilità
+- Possono variare
+	- le dimensioni della pagina
+	- I caratteri supportati
+	- I colori supportati
+	- I formati di immagini supportati
+- Soluzioni
+	- Posizionamento relativo
+	- Pagine dinamiche
+
+### Layout fissi vs fluidi
+- **Layout fisso**: le dimensioni delle aree e dei caratteri tipografici sono fissate utilizzando misure assolute (*pixel, punti, ...*)
+- **Vantaggi**:
+	- Maggior controllo sul risultato
+- **Svantaggi:**
+	- Minore flessibilità: alcune configurazione hw/sw potrebbero presentare dei problemi di visualizzazione (*IE nonpermette di ridimensionare testo le cui dimensioni sono state definite in modo assoluto*)
+	- Non viene comunque garantito un controllo assoluto (*es, font non installati*)
+-> sito reppublica
+- **Layout fluido**: le dimensioni di aree e caratteri sono fissate utilizzando unità di misura relative (*em, %*)
+- **Vantaggi**: la pagina può più facilmente adattarsi ai diversi display: sfrutta al meglio i monitor grandi ma è visibile anche su monitor molto piccoli come palmari e cellulari
+- **Svantaggi**
+	- Rischio di perdita di coerenza del layout in alcuni casi
+	- Maggiore difficoltà di progettazione perchè si devono considerare molti casi e le relazioni dimensionali con gli oggetti a larghezza fissa (ex. immagini) sono più problematiche
+
+#### Altri layout
+- **Layout ibridi:**
+	- Utilizzano un mix di unità di misure diverse per aree e caratteri
+	- I vantaggi e gli svantaggi dipendono dalla particolare configurazione utilizzata
+- **Layout elastici:**
+	- Molto simili ai layout fluidi, ma si utilizzano unità relative che dipendono dalle preferenze utente come gli em. Si adattano bene quindi, non tanto alla dimensione della pagina, ma alle preferenze utente. Possono contenere alcune parti fisse, dimensionate utilizzando i pixel.
+- **Layout a variabilità controllata/Responsive design:**
+	- Le dimensioni possono variare all'interno di certi intervalli
+https://www.math.unipd.it/ (*ibrido*)
+https://www.unibo.it/it (variabilità controllata)
+![[Pasted image 20231128085658.png]]
+
+### Strategia da adottare per il layout
+- La scelta della strategia da adottare dipende da molti fattori:
+	- Tipologia di servizio offerto
+	- Tipologia di utenti
+	- Ambiente controllato (Es. *intranet o chiosco*)
+- In generale i layout fluidi sono sempre preferibili, perchè incrementano l'accessibilità
+- Regole generali:
+	- Suddividere la pagina web in aree omogenee per contenuti e funzionalità
+	- Le informazioni più importanti e la navigazione devono essere nell'area sicura
+	- Mantenere il layout coerente in tutto il sito
+
+### Responsive Web
+- L'incremento sempre maggiore degli accessi tramite dispositivi mobili aumentano notevolmente il problema della variabilità dell'interfaccia
+- **Problema**: applicazione dedicata o pagina web fluida?
+- Il *Responsive Design* cerca di trovare una soluzione:
+	- Vengono definiti dei punti di rottura
+	- Viene creato un layout per ogni intervallo
+	- Ogni singolo layout deve essere accessibile e tenere comunque conto della variabilità, che però ora è limitata
+**Punti critici:**
+- Definizione dei punti di rottura
+- Intervalli disgiunti e/o sovrapposti
+#### Regole da seguire 
+- Considerare gli schermi piccoli, ma anche quelli molto grandi (**_Attenzione_** _gli schermi grandi potrebbero creare torcicollo oltre a vedere un paragrafo molto molto lungo su una linea che fa schifo!!_).
+````HTML
+@media screen and (max-width:520px){...}
+@media screen and (max-width:768px){...}
+@media screen and (min-width:1200px){...}
+````
+- considerare i dispositivi usati in landscape e in portrait
+- Considerare la stampa
+- Ingrandire il font quando gli schermi diventano molto piccoli
+
+**Dimensione pixel** | *Descrizione*
+-----------------|------------
+320 px | Piccoli schermi, telefoni usati in modalità portrait
+480 px | Piccoli schermi, telefoni usati in modalità landscape
+600 px | Piccoli tablet, (*Amazon kindle*) usati in modalità portrait
+768 px | Tablet da 10" (iPad 1024x768) usati in modalità portrait
+1024 px | Tablet (iPad) usati in modalità landscape, piccoli desktop o portatili, in generale una finestra che non occupa tutto lo schermo in un qualsiasi schermo
+1200 px | Schermi grandi, pensato per computer ad alta definizione e/o desktop
+
+### Il caso dell'ecommerce
+- Negli **Stati Uniti** il 91% delle aziende ha una strategia mobile (*Forrester Research*)
+- In **Europa** il 40% :( , in **Italia** ancora meno (*not stonks*)
+	- L'**Italia** è il paese europeo con il più alto tasso di crescita in termini di penetrazione mobile (*+46% all'anno secondo Google*)
+		- 41% degli italiani ha uno smartphone
+		- 10% un tablet
+		- il 30% di questi ha già fatto un acquisto da mobile (=12% della popolazione)
+
+#### Web Design Adattivo
+Supportare il passato, Ottimizzare il futuro
+- **Web Design Adattivo**
+	- **Responsive Design**
+	- **Robustezza agli errori dovuti al mancato supporto**
+
+
+
+
+
+
+
+
