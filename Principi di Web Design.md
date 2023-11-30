@@ -384,3 +384,120 @@ Supportare il passato, Ottimizzare il futuro
 ![[Pasted image 20231130114008.png]]
 ##### Regole per un rendering veloce:
 - I telefoni hanno risorse di calcolo ridotte rispetto ai computer
+- Alcune regole per velocizzare il rendering
+	- Salvare più immagini sullo stesso file e poi visualizzarne una parte (*attenzione che non siano troppo pesanti*)
+	- Un file solo per CSS e uno per Javascript. Usare i *minifier* per sorgenti Javascript e CSS.
+	- Evitare l'utilizzo di librerie JavaScript molto pesanti
+	- Se utile/possibile, utilizzare le funzionalità di cache.manifest e le canvas
+	- Limita l'uso delle grid
+	- Ridurre l'uso di immagini a favore delle regole [[CSS]]3 (*es. angoli arrotondati*)
+### Feedback e Feedforward
+- Non fanno parte dell'interfaccia visiva, ma influenzano notevolmente la qualità dell'interazione con l'utente
+- Il **feedback** è l'informazione di ritorno che il sistema fornisce a seguito di un'azione dell'utente
+	- Es.: messaggi di conferma o benvenuto
+- Il **feedforward** è un'informazione predittiva su quello che succederà a seguito di un'azione. Si cerca di anticipare l'effetto di un'interazione
+	- *preview, url sulla barra di stato, dimensione del file su un link*
+- Devono sempre essere presenti
+	- in assenza di feedback l'utente continua a ripetere l'azione
+	- l'assenza di feedforward genera incertezza e quindi immobilità
+##### Come si valuta un'interfaccia?
+Modello piramidale 1: rappresenta la punta 
+1. Accattivante
+2. Usabile
+3. Robusta
+4. Funzionale = *efficace ed efficiente*
+### Emotional Design
+Le esperienze legate alle emozioni hanno un forte impatto nella memoria a lungo termine e sono richiamate con maggiore accuratezza
+- Stretto legame tra emozioni-atto dell'imparare
+- L'amigdala rilascia dopamina
+- è come utilizzare un post-it per ricordarsi qualcosa
+Un design che tenga conto delle emozioni può trasformare un utente casuale in un accanito lettore/cliente
+-> Alcuni esempi
+- *umanizzazione del prodotto*: maggiolino con sentimenti
+- *utilizzo di una personalità*: cane di segugio, uccello di twitter, clippy di microsoft, mailchimp
+- *Emozioni da usare il contrasto*: pecora nera in un gregge di pecore bianche
+##### Contrasto
+- è l'emozione che rappresenta ciò che l'utente non si aspetta, l'interruzione di un pattern conosciuto
+- Ci sono 2 tipi di contrasto:
+	- **Visuale:** differenze nella forma, colore, aspetto etc...
+	- **Cognitivo**: differenze in termini di esperienze passate, ricordi, etc...
+##### Quali emozioni si possono utilizzare?
+Non ci sono regole ma, a seconda del contesto, si possono utilizzare diverse emozioni. In generale le più efficaci sono:
+- Sorpresa
+- Piacere
+- Anticipazione
+- Status/Esclusività
+- Rewards 
+**MAI FORZARE L'UTENTE AL CAMBIAMENTO**
+##### Sorpresa
+- Se si viene sorpresi quando il nostro cervello trova una deviazione da una situazione standard -> contrasto
+- La sorpresa è spesso accompagnata da una sensazione piacevole e provoca una risposta veloce immediata
+	- Evita l'uso eccessivo del ragionamento
+	- è un'emozione ottima da utilizzare in caso di vendita per favorire l'acquisto impulsivo
+- Non utilizzare in modo improprio: tradire l'utente fa sì che questo venga perso in modo definitivo
+- **Sorpresa + Piacere**
+- **Sorpresa + Esclusività**:
+	- Quando ha raggiunto il centinaio di migliaia di utenti, Wufoo ha mandato lettere scritte e firmate a mano per ringraziare i suoi clienti di lunga data per ringraziarli della loro fedeltà
+	- è un modo per far sentire gli utenti speciali in un modo sempre più improntato all'automazione
+	- Wufoo ha eliminato il budget per il marketing quell'anno
+##### Anticipazione:
+- è l'effetto che si ottiene quando si mostra una parte del tutto e si lascia il tempo per far correre l'immaginazione
+	- I trailer sono un chiaro esempio di anticipazione
+	- è stata utilizzata da Twitter per il redesign dell'interfaccia
+- *ATTENZIONE*: creare anticipazione crea delle aspettative sul prodotto in arrivo
+	- Utilizzare questa emozione solo se si è sicuri di non deluderle
+	- Utilizzare il feedback sulla parte mostrata per migliorare il prodotto e il suo design
+- Limitare l'anticipazione ad un set ristretto di utenti porta all'utilizzo dell'esclusività (*status*)
+#### Reward
+- è un metodo per spingere gli utenti all'acquisto/utilizzo di un servizio fornendo/promettendo loro una <<*ricompensa*>>
+	- è il meccanismo delle slot machine e di alcuni videogiochi
+	- Esempi: Grupon, messaggi di saluto di mailchimp
+![[Pasted image 20231130122514.png]]
+### Le emozioni NON possono essere ignorate
+- L'uso delle emozioni per migliorare il design è sicuramente interessante, ma non sempre appropriato
+	- Difficile usare una mascotte tipo MailChimp nel sito dell'agenzia delle entrate per compilare la dichiarazione dei redditi
+- Non tutte le emozioni si possono usare sempre (*Sorpresa, Piacere*) mentre altre si possono adattare a tutte le personalità del brand (*Anticipazione, Status, Rewards*)
+- Non ci sono regole universali ma le emozioni sono importanti e *devono* essere considerate
+	- Uno studio ha dimostrato che le persone con danni nell'area celebrale dedicata alle emozioni non sono in grado di prendere decisioni banali
+**La scelta della mascotte deve essere presa in considerazione**
+-> 2023 per pubblicizzare una banca sceglieresti Sfera Ebbasta? NO scegli il tipo della pubblicità di mediolanum costruita intorno a te
+Magari sfera lo scegli per pubblicizzare una discoteca, un concerto, qualcosa di non serio
+-> L'utente cerca serietà per robe che sono serie
+#### Ostacoli
+Quando una persona deve prendere una decisione, valuta pro e contro. Quando non si possono misurare accuratamente, prevale l'istinto.
+Ostacoli maggiori:
+- Pigrizia
+- Scetticismo
+Un buon design o l'utilizzo di giochi/incentivi possono far prevalere l'istinto-e aiutare una decisione positiva
+![[Pasted image 20231130123250.png]]
+-> concorso universitario dropbox
+### Apatia
+- Cosa fare se non funziona?
+	- Gli utenti reagiscono con apatia se il contenuto non gli interessa oppure se è presentato male
+		- importanza dell'interfaccia
+		- Avere buoni contenuti è essenziale: si deve dire qualcosa e dirlo bene
+- Verifica:
+	1. La personalità creata per il brand è corretta?
+	2.  è troppo simile a quella dei competitor?
+	3. Vado incontro ai bisogni degli utenti?
+	4. La mia applicazione è ancora usabile, fruibile, affidabile?
+	5. Se possibile, interviste ad utenti reali
+#### Quando le emozioni non si possono usare
+- Non è sempre possibile usare un tono informale, ma in genere è una buona idea in caso di malfunzionamenti
+	- Caso flicker; Our tubes are clogged!! *OTTIMO ESEMPIO DA SEGUIRE*
+##### Principali errori di usabilità nel Web Design
+1. testi delle voci di menù, bottoni, e di altri widget per l'interazione non sono chiari
+2. Elementi diversi chiamati/identificati con la stessa etichetta/segno
+3. Aggiornamenti parziali
+4. Non avvertire l'utente in anticipo di cosa gli serve per completare un task
+5. Trascurare i segni di cliccabilità
+6. Neverending scroll
+7. Non chiarire chi fa cosa
+8. Trascurare il focus dell'attenzione
+9. Gestire male gli errori dell'utente
+10. Non stabilire gerarchie visuali
+##### Gestione degli errori
+**Pessima gestione**:
+![[Pasted image 20231130124424.png]]
+**Buona Gestione**:
+![[Pasted image 20231130124447.png]]
