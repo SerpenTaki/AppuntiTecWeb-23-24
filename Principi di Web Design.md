@@ -501,3 +501,27 @@ Un buon design o l'utilizzo di giochi/incentivi possono far prevalere l'istinto-
 ![[Pasted image 20231130124424.png]]
 **Buona Gestione**:
 ![[Pasted image 20231130124447.png]]
+
+---
+# Laboratorio di Progettazione
+## Utenti Mobile (secondo Google)
+Google definisce 4 categorie di Utenti Mobile:
+- LookUP finder: Quelli che vogliono trovare una risposta subito ad un problema specifico              ->*velocità*
+- Explore/Play: Hanno del tempo libero e vogliono distrarsi
+- Checkin Status: Vogliono rimanere aggiornati su temi specifici
+- Edit/Create: Creano contenuti da mobile in modo semplice ed efficace
+## Richiede una riflessione sugli utenti finali
+- Che contenuti sono importanti per loro
+- **Come** e a **Che scopo** navigano il sito
+![[Pasted image 20231130125112.png]]
+**ESEMPIO DA NON SEGUIRE**: sito UNIPD durante gli 800 anni che faceva solo spam degli 800 anni nascondendo info utili a prof e studenti
+![[Pasted image 20231130125212.png]]
+![[Pasted image 20231130125223.png]]
+![[Pasted image 20231130125232.png]]
+*Notare come il menù è più sotto vicino al pollice comodo senza fare ginnastica*
+![[Pasted image 20231130125309.png]]
+![[Pasted image 20231130125326.png]]
+![[Pasted image 20231130125341.png]]
+![[Pasted image 20231130125354.png]]
+![[Pasted image 20231130125414.png]]
+**APPROFONDIMENTO SUL WEB DESIGN E PHONE**: https://web.dev/articles/ux-basics?hl=it
