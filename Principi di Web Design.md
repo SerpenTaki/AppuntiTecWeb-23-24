@@ -1,5 +1,5 @@
-**Che cos'è l'architeettura dell'informazione**
-- La combinazione di organizzazione, archiviazione, etichettatura, ricerca e sistemi di navigazioone relativi ai siti web
+**Che cos'è l'architettura dell'informazione**
+- La combinazione di organizzazione, archiviazione, etichettatura, ricerca e sistemi di navigazione relativi ai siti web
 - L'arte e la scienza di dare forma a prodotti ed esperienze informative per supportare l'usabilità e la trovabilità (*l'efficacia con la quale un ambiente fisico o digitale permette di reperire un'informazione*)
 ### Progettare la struttura dell'informazione
 - La composizione del mondo è largamente determinata dalla nostra capacità di organizzare l'informazione 
@@ -352,11 +352,35 @@ Supportare il passato, Ottimizzare il futuro
 - **Web Design Adattivo**
 	- **Responsive Design**
 	- **Robustezza agli errori dovuti al mancato supporto**
-
-
-
-
-
-
-
-
+### Regole per il miglioramento progressivo
+1. I contenuti sono la base:
+	- è importante scrivere un testo significativo e convincente
+	- Scrivere per persone reali come se si progettasse una conversazione tra il sito e l'utente
+2. Il markup semantico è il primo miglioramento
+	- Il markup trasmette significato e aggiunge semantica rendendo il contenuto comprensibile anche per i motori di ricerca e le tecnologie assistive
+3. Il design visivo è un miglioramento
+	- Utilizzare un layout fluido e nascondere le regole CSS ai browser che non le supportano
+	- Considerare device alternativi
+4. L'interazione è un miglioramento
+	- Tolleranza ai guasti
+## Layout per cellulari
+*Progettare interfacce per dispositivi mobili non significa solamente far entrare in un piccolo dispositivo il layout per grandi schermi*
+### Strategia Mobile First
+- La **strategia Mobile First** parte dalla considerazione che i device mobili hanno molto meno spazio a disposizione per l'interfaccia
+- è quindi necessario individuare con *attenzione* quali sono i contenuti e le funzionalità da rendere disponibili
+- Questa operazione può aiutare a semplificare anche le interfacce per dispositivi più grandi
+- **Esempio metropolitana di londra**
+- **Interfacce mobile**
+	- Le diverse funzionalità disponibili sui cellulari aprono la strada per la progettazione di interfacce completamente diverse.
+- **interfacce specifiche per il contenuto**
+#### Organizzazione dell'interfaccia: regole
+- L'obbiettivo di un'interfaccia mobile deve essere quello di allinearsi ai bisogni dell'utente
+- Utente = un occhio + un pollice
+- Ci si deve focalizzare prima sul contenuto e poi sulla navigazione
+- è importante un buon posizionamento della navigazione
+- Inserire solo le scelte di navigazione rilevanti
+- Interfacce semplici: gli utenti in genere hanno fretta!!
+**ATTENZIONE ALLE GESTURE**:
+![[Pasted image 20231130114008.png]]
+##### Regole per un rendering veloce:
+- I telefoni hanno risorse di calcolo ridotte rispetto ai computer
