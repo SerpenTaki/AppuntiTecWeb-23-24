@@ -34,7 +34,102 @@ IL **PHP** potrebbe essere considerato vecchio perchè è del 1994 ma tuttavia i
 ````
 
 # Caratteristiche del linguaggio
-...
+##### Novità versione 7
+- velocità di esecuzione
+- Corregge molti bug di sicurezza
+- Nuovi costrutti che facilitano la programmazione e permettono una migliore leggibilità del codice
+- Migliore gestione delle eccezioni e del flusso del programma
+- il 26 Nov 2020 è stata rilasciata la versione 8
+	- Nuovi tipi (Ex *unione*)
+	- Nuove espressioni match
+	- Just In Time Compilation
+**INFO INIZIALI**
+- Uno script PHP
+	- Si può trovare in qualsiasi cartella del server
+		- `http://www.server.it/cartella/codice.php`
+	- Può essere lanciato attraverso l'interprete
+		- `php mioCodice.php`
+		- In questo caso l'output viene dato sulla shell
+	- `<?php` Tutto il codice php si trova in un tag `?>`
+	- Questo permette di includere PHP in qualsiasi altro linguaggio
+	- Se il codice PHP è su un file dedicato *consigliato* si può omettere il tag di chiusura
+		- l'esecuzione termina dopo l'ultima istruzione
+		- Non vengono inserite linee in più o output non voluto
+##### File di configurazione
+- Parametri di funzionamento di PHP sono definiti nel file *php.ini* che il server web legge ad ogni riavvio
+Alcuni esempi:
+- `display_errors = On` -> mostra gli errori 'sul browser'
+- `max_execution_time` -> tempo concesso per l'esecuzione di uno script, dopo il quale si blocca
+- `session.save_path`-> questo parametro indica la cartella nella quale PHP salva i file di sessione
+- `phpinfo()`-> per vedere le informazioni contenute in *php.ini*
+### Commenti e blocchi
+-> Ogni istruzione deve essere terminata da un `;`
+-> I commenti su una riga...
+````PHP
+//vengono identificati così (stile Java o C)
+# oppure così (stile Perl o shell)
+/* I multiriga
+	in questo modo */
+````
+### Variabili
+- Le variabili vengono indicate dal segno $ seguito dal nome della variabile
+- I nomi di variabili possono iniziare solo con una lettera o _
+- PHP è case sensitive ($a $\not=$ $A)
+- Le variabili *non* devono essere obbligatoriamente dichiarate
+	- **Attenzione** agli errori di battitura!
+	- `isset, unset`
+- Esistono delle variabili predefinite
+	- `$_SERVER["HTTP_HOST"` -> nome del sito
+	- `$_SERVER["PHP_SELF"]` -> nome del file che contiene lo script
+- **Attenzione**:
+	- `$stringa = "numero"; $numero = 123;`
+	- `echo $stringa` -> stampa 123
+### Tipi
+- In PHP il tipo viene dedotto dal contesto d'uso ed una variabile può cambiare tipo durante la sua esistenza
+- PHP supporta 8 tipi primitivi
+- Tipi scalari 
+	- boolean, integer, float, string
+- Tipi composti
+	- array
+	- object
+	- callable
+- Tipi speciali
+	- resource
+	- NULL
+### Interpretazione nelle stringhe
+- PHP consente di forzare o meno l'interpretazione dei nomi delle variabili all'interno delle stringhe
+	- Se `$eta=12`, la stringa `"Pippo ha $eta anni"` viene stampata così: *Pippo ha 12 anni*
+	- Una coppia di apici singoli `''` viene usata per delimitare una stringa che **NON** deve essere interpretata
+	- I doppi apici `""` sono usati per delimitare una stringa che deve essere interpretata
+	- Il carattere di escape viene utilizzato per rappresentare caratteri speciali all'interno di stringhe interpolate è `\`
+````PHP
+$uno = 1; $due = 2;
+echo '$uno+ $due\n'; //stampa: $uno+ $due\n
+echo "$uno+ $due\n"; //stampa: 1 + 2
+echo "\$uno+\$due\\n"; //stampa: $uno+$due\n
+````
+#### Conversione stringhe - interi
+````PHP
+<?php
+	$a=2;
+	$b=10;
+	$somma= $a + $b;
+	$stringa = $a . $b;
+	$somma2= $stringa + $a;
+	echo "Somma: $somma\n"; //somma: 12
+	echo "Stringa: $stringa\n"; //Stringa: 210
+	echo "\$somma2: $somma2". "\n"; //$somma2: 212
+?>
+````
+###### Funzioni per la manipolazione delle stringhe
+- `strstr(string $stringa, string $cercata)`: restituisce FALSE se cercata non è contenuta in stringa, altrimenti stringa a partire dalla prima occorrenza di cercata
+- `stristr(string $stringa, string $cercata)`: come la prima ma ignora la capitalizzazione
+- `strpos(string $stringa, string $cercata)`: come prima ma restituisce la posizione della prima occorrenza
+- `strcmp(string $stringa1, string $stringa2)`: restituisce 0 se le 2 stringhe sono uguali, 1 se la prima stringa viene dopo la seconda in ordine lessicografico, viceversa -1
+- `trim(string $stringa)`: toglie gli spazi prima e dopo
+- `substring(string $stringa, int $inizio, int $fine)`
+- `str_replace(string $cercata, string $sostituita, string $stringa)`
+### Gli array
 
 ### Gestione Input e Output da file
 - La libreria di sistema mette a disposizione diverse funzioni
