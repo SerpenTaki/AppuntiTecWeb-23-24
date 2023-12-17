@@ -724,6 +724,72 @@ function save(){//connessione al DBMS
 		$connessione->close();
 	}
 }
-````
 
-//slide 70/76
+try{
+	if(file_exist("materiale.php")){
+		Require_once("materiale.php");
+	}else{
+		theow new Exception("File necessario per l'secuzione mancante.");
+	}
+	...
+} catch(Exception $e){
+	//messaggio per l'utente
+	echo "The system is currently unavailable. Please try again later:".$e->getMessage().".";
+}
+//Stampo inizio pagina output
+echo file_get_contents("inizio.txt");
+//controllo tutti i parametri tranne note che sono opzionali
+if((isset($_POST['descr']))&&(isset($_POST['quant'])) && (isset($_POST['unità'])) && (isset($_POST['dest']))){
+	foreach($_POST as $chiave => &$valore){
+		$valore = pulisciInput($valore);
+	}
+	//creazione oggetto
+	$materiale = new Materiale($_POST['descr'],$_POST['quant'], $_POST['unita'], $_POST['dest'], $_POST['note']);
+	if($materiale==""){//inserimento del database
+		$materiale->save();
+		print "<p>Inserimento avvenuto correttamente.</p>";
+	}else{//stampa dell'errore
+		print "<p>I dati inseriti non sono corretti: ". $materiale."</p>";
+	}
+}else{
+	print "<p>Compilare tutti i campi!</p>";
+} //stampo fine pagina
+echo file_get_contents("fine.txt");
+````
+## Sessioni
+- Il protocollo HTTP è *stateless*, per passare informazioni da una pagina all'altra esistono 3 modi:
+	1. I campi *hidden*
+	2. I *cookies*
+	3. Le *sessioni*
+- Le sessioni sono più sicure dei primi 2 metodi perchè i dati vengono salvati sul server
+- Le gestioni servono ad esempio per gestire le sezioni private, ovvero protette da password di un sito
+- Tutti i dati relativi ad una sessione sono salvati nell'array associativo `$_SESSION`che è una variabile superglobale
+#### Creazione e lettura
+- Alla prima richiesta viene creata una sessione identificata da un *session id (sid)* che viene passato al client (*cookie*)
+```PHP
+<?php
+	//crea una sessione o la attiva
+	session_start();
+	if(!isset($_SESSION['count'])){
+		//creazione di una nuova variabile di sessione
+		$_SESSION['count'] = 0;
+	} else{
+		//uso di una variabile di sessione
+		$_SESSION['count']++;
+	}
+?>
+```
+#### Distruzione
+```PHP
+//Cancella una variabile da una sessione
+<?php
+	session_start();
+	unset($_SESSION['count']);
+?>
+
+//Cancella tutti i dati di una sessione
+<?php
+	session_start();
+	unset($_SESSION);
+?>
+```
