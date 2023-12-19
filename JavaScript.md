@@ -184,6 +184,75 @@ Barra di stato | status
 **METODI BOM**
 - L'oggetto window rappresenta la finestra (*o scheda*) del browser. Può essere omesso nella chiamata alle sue proprietà o metodi perchè usato implicitamente
 - La funzione *open* permette di aprire una nuova finestra
+##### Apertura di una nuova finestra
+- Questa soluzione si trasforma elegantemente perchè se javascript non è abilitato apre il link nella stessa pagina
+`<a href="http://www.example.com/" onclick="popUp(this.href); return false;">Example</a>
+```
+function popUp(winURL){
+	window.open(winURL, "popup", "width=320, height=480");
+}
+window.open(url, nome, lista_di_features);
+```
+- Per i dispositivi touch `ontouchend`
+- Questa soluzione presenta la separazione tra comportamento e struttura
+```HTML
+<a href="http://www.example.com/" class="popup">Example</a>
+```
+```JavaScript 
+var links = document.getElementsByTagName("a");
+for (var i=0; i<links.length, i++){
+	if(links[i].getAttribute("class") == "popup"){
+		links[i].onclick = function() {
+			popUp(this.getAttribute("href"));
+			return false;
+		}
+	}
+}
 
+window.onload = linkNuovaFinestra;
+function linkNuovaFinestra(){
+	var links = document.getElementsByTagName("a");
+	for(var i = 0; i<links.length; i++){
+		if(links[i].getAttribute("class") == "popup"){
+			links[i].onclick = function(){
+				popUp(this.getAttribute("href"));
+				return false;
+			}
+		}
+	}
+}
 
-26/67
+function popUp(url){
+	window.open(url; "nuovaFinestra", "width=320, height=480");
+}
+```
+# Document Object Model (DOM)
+- Il **DOM** permette di accedere ai diversi elementi di una pagina web. È uno standard, con supporto oramai completo.
+- La pagina è divisa in vari elementi in relazione tra loro
+
+Elemento | Oggetto
+------|------
+Pagina web | `window.document` o `document`
+Form | `document.forms["ID form"]`
+Immagini | `document.images["ID immagine"]`
+- Il DOM HTML permette di modificare, aggiungere o rimuovere elementi HTML in modo standard, con supporto oramai completo
+```mermaid
+flowchart TD
+A[Document] --> B[Root element *html*]
+B --> C[Element *head*]
+B --> D[Element *body*]
+C --> E[Element *title*]
+E --> F[Text: *mytitle*]
+D --> G[Element *a*]
+H[attribute *href*] --> G
+D --> I[Element *h1*]
+I --> L[Text *My header*]
+G --> Z[Text *My link*]
+```
+### JavaScript e HTML
+- Posso accedere ad un tag tramite `getElementsByTagName`o `getElementById`
+- Ogni elemento dell'array *forms*, contiene un array *elements* con gli elementi del form (pulsanti, caselle di testo ecc...)
+- Un documento DOM ha una struttura ad albero
+
+32/67
+
