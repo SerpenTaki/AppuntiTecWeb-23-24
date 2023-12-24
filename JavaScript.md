@@ -253,6 +253,262 @@ G --> Z[Text *My link*]
 - Posso accedere ad un tag tramite `getElementsByTagName`o `getElementById`
 - Ogni elemento dell'array *forms*, contiene un array *elements* con gli elementi del form (pulsanti, caselle di testo ecc...)
 - Un documento DOM ha una struttura ad albero
+### Gli eventi 
+- Nella programmazione tradizionale il codice contiene in sé l'ordine in cui viene scritto
+- Nella programmazione ad eventi si specificano funzioni (*event handler*) da eseguire all'occorrenza di un determinato evento
+	- simile alla gestione delle eccezioni
+	- `function unload_saluto(){ alert("Grazie per aver visitato il nostro sito!"); }`
+- È importante scrivere correttamente l'evento a cui si vuole rispondere
+-  event handler o chiamata di funzione su di un attributo specifico
+	- `onclick = "alert('Stai uscendo da questo sito.');"`
 
-32/67
+Attributo | Tag
+---------|-----
+onabort | `<img>`
+onblur | `<body>,<form>,<frameset>,<frame>, etc...`
+onchange | `<input>,<textarea>,<select>`
+onclick | `<a>, <input>`
+onerror | `<img>,<body><frameset>`
+onfocus | `<body>,<frameset>,<frame>,<input>, etc..`
+onload | `<img>, <body>, <frameset>`
+onmouseover | `<a>,<area>`
+## Gestire diversi dispositivi di Input
+- Gli event pointer sono un'astrazione per le interazione basate su puntatore (mouse, stilo, tocco, altri futuri) che utilizzano eventi generici indipendenti dal puntatore
+```JavaScript
+window.addEventListener('pointerdown', detectInput, false)
 
+function detectInput(event){
+	switch(event.pointerType){
+		case 'mouse': ...
+			break;
+		case 'touch': ...
+			break;
+	}
+}
+```
+## Pagine dinamiche con JavaScript
+- Il linguaggio JavaScript permette di posizionare e dimensionare gli oggetti contenuti nel documento HTML
+- Può quindi essere usato per creare dinamicamente il documento in fase di caricamento (*onload*)
+- La modifica dinamica lato client delle pagine web deve avvenire attraverso script non intrusivo
+### Cosa si può rendere dinamico?
+- Sulla base delle:
+	- caratteristiche del browser
+	- dimensioni della pagina
+	- dell'input dell'utente
+	- degli spostamenti del mouse e degli eventi in genere
+- JavaScript è in grado di modificare
+	- La posizione e la dimensione degli elementi
+	- la caratteristiche di stile (colore, font disponibili, etc..)
+	- il contenuto e la sua struttura
+- Oppure può dare dei messaggi di aiuto e/o avviso
+### L'oggetto Navigator
+- Indica quale browser sta utilizzando l'utente
+	- appName indica il nome del browser
+	- appVersion indica la versione
+- Esempio
+	- `alert("il browser usato è: " +navigator.appName + "\n" + navigator.appVersion + "\n");`
+- Conoscere quale browser sia sta utilizzando è utile perchè in alcuni casi bisogna predisporre codice differente per i diversi browser
+	- **_code Forking_**: da **NON** utilizzare, ma diventa inevitabile se gli oggetti non sono definiti in modo comune nel DOM
+ **BISOGNA**
+ -> Individuare di quale browser si tratta vuol dire richiedere un continuo aggiornamento dello script
+ -> Uno script che testa il supporto al DOM non richiede aggiornamento
+ ```JavaScript
+ if(!document.getElementById){
+	 window.location = "http://www.sito.it/altra_pagina.html";
+ }
+ ```
+## Libreria Modernizr
+- Il supporto ad [[HTML5]] e [[CSS]]3 non è ancora completo da parte di tutti i browser, inoltre c'è il problema dei browser non aggiornati 
+- **Modernizr** è una libreria opensource che aiuta a testare le funzionalità e non il tipo di browser utilizzato
+```JavaScript
+if(Modernizr.video){
+	//video supportato
+} else { /*Video non supportato*/}
+function isTagVideoSupported(){
+	return !!document.createElement("video").canPlayType;
+}
+```
+### Ordinare un array
+```HTML
+<button onclick="myFunction()">Ordina in modo ascendente</button>
+<p id="demo"></p>
+<script>
+	var points = [40, 100, 1, 5, 25, 10];
+	document.getElementById("demo").innerHTML = points;
+
+	function myFunction(){
+		points.sort(function(a,b){return a-b});
+		document.getElementById("demo").innerHTML = points;
+	}
+</script>
+```
+## I cookie
+- Sono piccoli file di testo memorizzati sul computer dell'utente, e scambiati tra client e server, che contengono informazioni salvate dai siti web
+- Sono usati per memorizzare in modo permanente delle informazioni univoche rispetto ad un utente, in modo da poterlo riconoscere e/o poterle riusare 
+	- *problemi di privacy*
+- Si deve fare attenzione al fatto che i cookie possono essere eliminati o disabilitati dall'utente
+- Ogni cookie contiene dei parametri, tra cui:
+	- *nome*: identificativo per il cookie
+	- *valore* : il valore da memorizzare
+	- *scadenza* (*expiration date*): è opzionale, stabilisce la data di scadenza del cookie, cioè la data dopo la quale questi vengono eliminati dal disco rigido dell'utente
+#### Creazione e distruzione di un cookie
+```Javascript
+//imposta il cookie con nome = valore per la durata di giorni
+function setCookie(nome, valore, giorni){
+	var oggi = new Date();
+	var scadenza = new Date();
+	scadenza.setTime(oggi.getTime() + 24*giorni*3600000);
+	document.cookie = nome + "=" + escape(valore) +"; expires=" + scadenza.toGMTString();
+}
+// rimuove un cookie
+function delCookie(nome){
+	setCookie(nome, "");
+}
+```
+#### Accesso ad un Cookie
+```
+//restituisce il valore del cookie nome
+function getCookie(nome){
+	//genera un array di coppie "Nome = Valore" separate da ';'
+	var asCookies = document.cookie.split(";");
+	var stringa="";
+	//ciclo su tutti i cookies
+	for(var i=0; i<asCookies.length; i++){
+		//leggo singolo cookie "Nome = Valore"
+		var info = asCookies[i].split("=");
+		if (nome == info[0]){
+			stringa = unescape(info[1]);
+		}
+	}
+	return stringa; //stringa="" se il cookie non esiste
+}
+```
+#### Utilizzo del Cookie per riconoscere un utente
+```Javascript 
+function legginome(){
+	var nome=prompt("Inserisci il nome");
+	setCookie("utente", nome, 2);
+	leggiutente();
+}
+
+function leggiutente(){
+	var utente=getCookie("utente");
+	if (utente!="") stringa_path = "Bentornato" + utente + "...";
+	dpcument.getElementById("path").innerHTML = stringa_path;
+}
+```
+```HTML
+<body onload="leggiutente();">
+...
+<a href="javascript:legginome();">Crea un cookie con il tuo utente</a>
+```
+##### Altro modo di memorizzare i dati su client
+- Il sempre più frequente uso dei telefonini impone di non fare sempre affidamento sulla rete
+	- l'utente si sposta anche in zone dove non è presente il segnale
+- I cookie hanno un limite di 4093KB per tutti i cookie di un dominio
+- Soluzione: *localStorage*, *sessionStorage*, *indexedDB*
+```Javascript 
+if ('localStorage' in window && window.localStorage !==null){
+	//possiamo usare localStorage
+	localStorage.setItem('key', 'value');
+	localStorage.setItem('myObject', JSON.stringify(myObject));
+	...
+	var myValue = localStorage.getItem('key');
+	var myObject = JSON.parse(localStorage.getItem('myObject'));
+}
+```
+## AJAX
+- è l'acronimo di *Asynchronous JavaScript and XML* e realizza uno scambio asincrono di dati
+	- lo scambio di dati avviene in background 
+	- non è richiesto di ricaricare la pagina
+- La pagina HTML chiamante deve contenere 
+	- la chiamata allo script JavaScript (pulsante o evento)
+	- un elemento (ex. div, select, etc) dove inserire il contenuto
+#### Creazione oggetto XMLHttp
+```Javascript
+function getXMLHttp(){
+	var xmlHttp;
+	try{
+		xmlHttp = new XMLHttpRequest();
+	}catch(e){ //internet Explorer usa un oggetto Active X
+		try{
+			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){
+			try{
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}catch(e){
+				alert ("Messaggio di errore per i vecchi browsers"); return false; 
+			}
+		}
+	}
+	return xmlHttp;
+}
+```
+##### Esempio
+```Javascript
+function AjaxRequest(){
+	var xmlHttp = getXMLHttp();
+	xml Http.onreadystatechange = function(){ //quando l'operazione è completata
+		if(xmlHttp.readyState==4){
+			inserisciTesto(xmlHttp.responseText);
+		}
+	}
+	xmlHttp.open("GET", "ScriptPHP.php", true);
+	xmlHttp.send(null);
+}
+function inserisciTesto(response){
+	document.getElementById('IDdoveInserire').innerHTML = response;
+}
+```
+### JQuery
+- Library JavaScript per manipolazione di HTML, CSS ed eventi
+- $('qualcosa') restituisce un array di elementi ([n])
+	- `#id`
+	- `.classe`
+	- Elemento (li, a, div)
+- `$(''#formInput').on(evento, function() {})`
+- Modifica dello stile tramite style o con addClass/removeClass
+- `$(document).ready()`eseguito solo quando il DOM è pronto per essere manipolato
+## Utilizzo di librerie esterne
+È molto importante assicurarsi che le librerie esterne siano disponibili perché ci sono stati diversi esempi nella storia del web di blackout di siti dovuti all'indisponibilità di una libreria esterna
+- Gawker Media, 2011
+- Sky Broadband, 2014
+- Morale: *ci sono troppi fattori su cui non abbiamo il controllo quando eseguiamo codice su browser*
+### Alcune regole per il progressive enhancement
+- Progettare una versione base che funzioni senza JavaScript
+	- Anche nel caso di errore più catastrofico gli utenti saranno in grado di eseguire le funzionalità di base
+- Programmare sulla difensiva
+	- A differenza di HTML o CSS, Javascript non è tollerante ai guasti basta 1 solo errore e si ferma l'esecuzione
+	- Guardare prima di agire: non si può dare per scontata la presenza di altri elementi oltre a *html, head e body*, si deve cercare un elemento prima di usarlo
+	- Delegare i comportamenti: l'ascolto degli eventi può essere fatto sull'elemento *body* che poi cerca l'elemento a cui siamo interessati
+	- Testare il supporto alle caratteristiche 
+	- Controllare la presenza delle librerie
+	- Stabilire requisiti minimi
+	- Tagliare le perdite
+## Event delegation
+- *Event delegation* è un pattern molto utile per gestire il DOM
+- Consiste nel delegare la gestione di una risposta ad un evento uguale per molti elementi ad un elemento contenitore:
+	- Si mette l'handler nell'elemento contenitore
+	- Si verifica che elemento ha scatenato l'evento (*event.target*)
+	- Se l'evento si è verificato all'interno di un elemento che dobbiamo gestire si esegue la funzione associata con l'handler
+#### Esempio
+```JavaScript
+contatiner.onclick = function(event){
+	if (event.target.className != 'remove-button') return;
+
+	let pane = event.target.closest('.pane');
+	pane.remove();
+};
+```
+### Pro e contro
+**PRO**:
+- Semplifica e diminuisce i bit: si usa un solo handler
+- Maggiore flessibilità: se si aggiungono o rimuovono componenti, non c'è necessità di modifiche al codice
+**CONTRO**
+- Maggiore richiesta di CPU perchè l'handler sul container potrebbe attivarsi anche per eventi, a qualunque livello, che in realtà non andrebbero gestiti
+##### Controllare i requisiti minimi
+```JavaScript
+if('querySelector' in document && 'localStorage' in windows && 'addEventListener' in window){
+	//browser HTML5
+}
+```
