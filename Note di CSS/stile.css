@@ -1,0 +1,29 @@
+/*tutorial flex*/
+
+.container{
+    display: flex;
+    flex-direction: column; /*row è di default e mette gli elementi in orizzontale, column mette in verticale*/
+    justify-content: space-evenly; /*flex-start mette gli elementi all'inizio "sinistra", flex-end gli mette a destra */
+    /* center gli centra, space-between distribuisce uniformente gli elementi tra i 2 estremi, space around gli sistema
+    similmente a space between ma mette del padding anche ai bordi, space-evenly distribuisce lo spazio attorno ad ogni elemento*/
+    align-items: flex-start;
+    /*flex-wrap: wrap;/*permette di non concentrare tutti gli item su un unica riga*/
+    /*align-content: space-between; /*funziona solo con flex wrap e serve per ordinare gli elementi, usa gli stessi attributi di
+    justify-content*/
+    gap: 1em;
+}
+
+/*
+.item-1{
+    font-size: 1.5rem;
+}
+*/
+
+.item-3{
+   /* flex-grow: 1; /*fa crescere un oggetto se c'è abbastanza spazio*/
+    /*flex-shrink: 4; /*a 0 non si rimpiciollisce*/
+    /*flex-basis: 300px;*/
+    flex: 1; /*può avere fino a tre valori e raccoglie i precedenti*/
+    align-self: flex-end;
+    order: -1; /*potrebbe dare problemi con l'accessibilità*/
+}
