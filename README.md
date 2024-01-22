@@ -5,10 +5,10 @@ qui troverete:
 
 - HTML
 - CSS
-- Accessibilità (WIP)
-- PHP (WIP NS)
-- JS (WIP NS)
-- Caratteristiche di progettazione e design di siti web (WIP)
+- Accessibilità
+- PHP 
+- JavaScript
+- Caratteristiche di progettazione e design di siti web
 - SEO (*Search Engine Operation*)
 
-Per godere al meglio degli appunti si consiglia di usare obsidian
+Per godere al meglio degli appunti si consiglia di usare il software obsidian
