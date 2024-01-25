@@ -8,7 +8,7 @@ La parte che influenza di più il tempo di accesso è il *backend*!!!
 **RICORDA**
 1) **STRUTTURA** : [[HTML]]
 2) **PRESENTAZIONE** : [[CSS]]
-3) **COMPORTAMENTO** : PHP per i server, JavaScript per i client
+3) **COMPORTAMENTO** : PHP per i server, [[JavaScript]] per i client
 E tutte devono essere separate.
 
 IL **PHP** potrebbe essere considerato vecchio perchè è del 1994 ma tuttavia il 79% del web lo continua ad usare, quindi per lavoro serve.

@@ -62,3 +62,42 @@ Il contenuto del tag title deve essere dal *particolare al generale*: avendo poc
 #### Che cosa si intende per *responsive Web*?
 Detto anche layout a variabilità controllata, identifica i cosiddetti punti di rottura/controllo/breakpoints per definire precisamente gli intervalli di variabilità in cui lo schermo cambia e quindi adattarsi alle varie dimensioni. In particolare ha l'obiettivo di rendere l'esperienza utente ottimale in modo fluido e non dipendente dal dispositivo dell'utente. Questo assicura il contenuto sia sempre leggibile e navigabile.
 ##### Un tag *input* può essere figlio di un tag *form* (in XHTML)?
+**Falso**, in quanto un tag input non può essere figlio diretto di un tag form, può invece comparire correttamente all'interno di un altro tag che possa essere figlio diretto di form, come *fieldset* o *div*.
+Di fatto, un elemento come *form* in XHTML può contenere solo elementi di blocco, cosa che *input* non è. Viene consigliato di riportare gli elementi nel *fieldset*; quindi, anche per XHTML5, a domanda si risponda *falso*, dato che è meglio metterlo dentro un tag descrittivo.
+#### Le tabelle non andrebbero mai usate per svolgere compiti di layout
+**Vero**, dato che questo andrebbe contro il principio di separazione tra struttura e presentazione;
+Andrebbero utilizzate solo quando i dati da presentare devono essere riportati in forma tabellare. Si consideri inoltre che possono dare problemi per l'accessibilità.
+#### Le tabelle sono un ostacolo alla facile comprensione per le persone con disabilità, quindi andrebbero evitate ove possibile
+**Vero**, dato che spesso vengono utilizzate in modo improprio per motivi di layout. Si devono utilizzare quando si ha bisogno di dati in formato tabellare o comunque per organizzare più facilmente le informazioni e renderle comprensibili; normalmente se si intende usarle occorre sfruttarle in modo accessibile (*usando i tag semantici `thead/tbody/tfoot`, usando`scope`oppure gli `headers`, usando il tag `summary`oppure id e un `aria-describedby`usare le abbreviazioni e attribiti lang quando utile...*)
+##### I titoli delle pagine contengono informazioni che vanno dal generare al particolare
+**Falso**, perchè potrebbe causare problemi di accessibilità; il flusso di informazioni dovrebbe andare dal particolare al generale. Questo aiuta gli utenti a comprendere rapidamente il contenuto della pagina e a orientarsi all'interno del sito ed è anche utile per i motori di ricerca. Inoltre se abbiamo pochi caratteri a disposizione, solo i primi caratteri del titolo sarebbero visibili e quindi andando dallo specifico al generico andrei comunque a "*preservare*" il contenuto informativo.
+##### Descrivere la differenza di utilizzo dei metodi GET e POST in una form
+[[PHP#HTML per i form]]
+**Metodo GET**: è il predefinito. Viene utilizzato per leggere dati. Il browser allega la *stringa di query* all'interno dello stesso *URL*. In questo modo, *chiunque* abbia accesso a questo vede i dati.
+- `http://server/path/file.cgi?parametro=valore` (*coppia chiave-valore messo dall'utente*)
+- Se si usa il metodo GET la stringa viene inserita dal server in una variabile d'ambiente
+- **VANTAGGI**:
+	- è possibile fare cache con `get`, sottoforma di *bookmark/segnalibro al link* (perchè i dati, inseriti una serie di volte, possono essere reinseriti allo stesso modo)
+	- sono richieste facili da costruire e facilmente condivisibili
+- **SVANTAGGI:**
+	- limite alla lunghezza della stringa oppure alla lunghezza massima dell'URL
+	- devono essere usati solo per recuperare dati e non per modificare i dati sul server, poichè non sono idempotenti (*cioè più richieste identiche possono avere effetti diversi sul server*).
+**METODO POST**: viene usato per inviare dati. La stringa di query viene passata come input standard nel *corpo* della richiesta e non è visibile.
+- Se si usa il metodo POST si deve leggere la stringa di query dall'input standard nel *corpo* della richiesta e non è visibile.
+- **VANTAGGI**:
+	- Si possono inviare grandi quantità di dati
+	- Sono più sicure, dato che i dati sono non sono visibili negli URL
+	- Possono essere usate per modificare tanti dati sul server essendo che sono idempotenti
+	- I dati vengono mandati ogni volta (*il browser avviserà l'utente che i dati saranno inviati*)
+	- Possono codificare dati in binario.
+- **SVANTAGGI**:
+	- Sono più complesse da gestire e richiedono più risorse
+	- NON vengono salvate in cache e sono anche più lente delle GET
+	- Non è possibile salvarle come segnalibro
+##### La separazione tra struttura, contenuto e presentazione aiuta il posizionamento nelle pagine SERP
+**FALSO**, in quanto non è possibile separare struttura e contenuto, ma si ha tra struttura, presentazione e comportamento; ciò aiuta il posizionamento delle pagine dato che i browser interpretando le informazioni/metadati HTML, sono in grado di valutare "meglio" pagine con tale separazione. Nello specifico una buona presentazione certamente aiuta a livello di formattazione e di esperienza utente, specie quando si adatta a vari dispositivi sulla base del Web Design Adattivo e un buon comportamento, cha a livello di caricamento di pagine e facilità d'uso, influisce a livello di permanenza dell'utente e come primo impatto.
+##### L'uso del menù a scomparsa non influisce sull'accessibilità di un sito.
+**FALSO**, l'uso dei menù a scomparsa può causare problemi di accessibilità tra cui:
+1. se il menù è di scarsa qualità non tutte le sue voci possono essere raggiungibili mediante TAB
+2. un menù non ben evidenziato può portare certi utenti a perdere informazioni importanti per la buona fruizione del contenuto. Di fatto oltre a perdere il focus l'ottica usabilità ne è compromessa; la navigazione da tastiera e l'evidenziazione fanno in modo che il contenuto possano essere più facilmente raggiunti.
+##### Descrivi quali sono i vantaggi di inserire le dimensioni di un immagine in HTML o CSS
