@@ -101,3 +101,95 @@ Andrebbero utilizzate solo quando i dati da presentare devono essere riportati i
 1. se il menù è di scarsa qualità non tutte le sue voci possono essere raggiungibili mediante TAB
 2. un menù non ben evidenziato può portare certi utenti a perdere informazioni importanti per la buona fruizione del contenuto. Di fatto oltre a perdere il focus l'ottica usabilità ne è compromessa; la navigazione da tastiera e l'evidenziazione fanno in modo che il contenuto possano essere più facilmente raggiunti.
 ##### Descrivi quali sono i vantaggi di inserire le dimensioni di un immagine in HTML o CSS
+**HTML** :
+- Fa conoscere la dimensione dell'immagine al browser (senza scaricarla)
+- Ottimizza il caricamento/rendering della pagina, in quanto la specifica delle dimensioni permette al browser di riservare lo spazio necessario per visualizzare l'immagine prima del suo caricamento completo
+**CSS**:
+- Separazione tra struttura e presentazione definendo attributi custom/personalizzati all'immagine come voluto.
+###### L'attributo id si differenzia da class **SOLO** perchè permette di identificare un unico elemento e non un insieme di elementi?
+NO (*attenzione al solo nella domanda*)
+#### Metodo get nei V/F
+- permette di reinviare gli stessi dati al server senza ricompilare la form
+- ha un limite nella lunghezza della query string
+##### HTML5 definisce una gestione standard degli errori quindi ora non è più importante che il codice HTML sia valido
+**FALSO**, tuttora è un problema non ancora risolto. NON esiste infatti un metodo universale di gestione degli errori, dato che i browser stessi e anche i singoli dispositivi (*a seconda della loro età*) possono non interpretare correttamente contenuto non valido e potrebbe comportare problemi al sito per come lo si era pensato
+##### Nel caso di specificità con lo stesso valore cosa succede?
+Si prende per buona quella definita per ultima
+###### Cose utili:
+- *struttura/contenuto e presentazione separati*: avvantaggiano nei motori di ricerca e diminuiscono il peso del sito
+- *struttura/contenuto e comportamento separati*: non avvantaggiano nei motori di ricerca nè diminuiscono il peso del sito
+- *presentazione e comportamento separati:* avvantaggiano nei motori di ricerca e diminuiscono il peso del sito.
+Si ha infatti: **Struttura _(HTML)_**, **Presentazione _(CSS)_** e **Comportamento _(PHP, JS)_**.
+Il discorso della separazione è perchè tu non vada ad usare JS per fare struttura (*che non verrebbe vista*), o HTML per mettere colori o stili (*che sporcano la leggibiità e manutentibilità del codice*). Di base aggiungere script vari appesantisce il sito ed inoltre c'è il rischio che alcuni browser non riescano a leggerli quindi è meglio separarli così in quel caso la pagina resta accessibile. *NON POSSO* separare struttura e contenuto perchè quest'ultimo è parte integrante della struttura.
+### Prova a dare una definizione di accessibilità
+L'accessibilità è un insieme di proprietà e regole da seguire per tutelare le varie categorie di utenti, in particolare quelli diversamente abili, rendendoli più facilmente usabile per tutte le categorie da diversi tipi di dispositivi. Più formalmente:"*usabilità di un prodotto/servizio/strumento* per persone con ampio raggio di capacità". Bisogna pensarci dal *primo momento* seguendo buone regole di progettazione; implementarla dopo può essere costoso in termini di tempo e denaro.
+
+#pagina12
+
+##### La validazione del codice HTML e CSS di un sito web è condizione necessaria per garantire la sua accessibilità -> VERO
+- È condizione necessaria non sufficiente poichè per arrivare una validazione esaustiva dell'accessibilità di una pagina servono altri controlli (*controllo umano ad esempio*) che si differenziano in base a scopo e contesto.
+##### L'uso dei colori non influenza l'accessibilità del sito -> FALSO
+L'informazione non dovrebbe mai essere veicolata univocamente attraverso il colore e per questo motivo alcune precauzioni devono essere adottate per garantire che le informazioni siano accessibili a tutti gli utenti, compresi coloro che hanno difficoltà a vedere i colori:
+- Ad esempio: è importante assicurarsi che il testo abbia un contrasto sufficiente rispetto allo sfondo per essere facilmente leggibile, e che ci siano alternative testuali per le informazioni presentate solo attraverso i colori. Inoltre è importante testare il sito con diversi sistemi di aiuto per la vista per garantire che le informazioni siano accessibili a tutti gli utenti
+#### domanda su. PHP e JS
+- Un indirizzo email non si controlla
+	- potrebbe non essere corretta perchè non tiene conto di tutte le regole di sintassi valide per gli indirizzi email. Alcune ragioni per cui questa regex potrebbe non essere corretta sono:
+		- non verifica se il nome utente (*la parte prima la "@"*) è lungo almeno un carattere e non contiene caratteri non validi come spazi o caratteri speciali
+		- Non verifica se il dominio (*la parte dopo la @"*) è lungo almeno 2 caratteri e non contiene caratteri non validi come spazi e caratteri speciali
+		- non verifica se il TLD (*estensopne del dominio*) è lungo almeno 2 caratteri e on contiene caratteri non validi
+		- Non verifica se l'indirizzo email contiene caratteri di commento come + o . prima della @
+		- Non verifica se l'indirizzo email contiene il carattere di coomento. alla fine del nome utente o del dominio
+		- Non verifica se l'indirizzo email contiene caratteri di commento ripetuti come ".." o "--"
+
+###### Convenzioni:
+INTERNE: sempre rispettate
+ESTERNE: possono essere rotte se questo ha un tonaconto (*colore dei link*)
+
+
+## Metafora della pesca:
+- Tiro perfetto -> L'utente sa esattamente cosa sta cercando
+- Trappola per aragoste -> L'utente ha un'idea abbastanza chiara ma si aspetta di imparare qualcosa durante la ricerca
+- Pesca con la rete a strascico -> L'utente non lascia intentata nessuna possibilità
+- Boa di segnalazione -> L'utente vuole ritrovare in un secondo momento qualcosa che ha già letto
+#### È sempre possibile usare uno schema esatto per il menù principale -> FALSO
+Gli schemi esatti servono quando l'utente sa esattamente cosa sta cercando; L'organizzazione della struttura organizzativa, cioè come i collegamenti sono organizzati tra loro, dipende dal contesto che si vuole creare. Normalmente, una buona strategia può essere quella di adottare uno schema ibrido; si pensi ai siti di notizie, che hanno i principali fatti in ordine cronologico (*schema esatto*) ma organizzazione in categorie contestuali ai fatti più rilevanti o a tematiche di raggruppamento (ambiguo, perchè dipendente dal contesto), per meglio adattarsi alle esigenze dell'utente.
+##### È sempre possibile adottare uno schema ambiguo per il menù principale-> SI
+Di fatto gli schemi ambigui si adattano al fatto che l'utente non abbia completa conoscenza di ciò che vuole, pertanto questo tipo di schema organizzativo, cioè come sono riportate le informazioni, va sempre bene.
+###### Fai un esempio di schema adatto alla navigazione principale specificandone contesta e tipologia
+- Schema esatto: ricette ordinate alfabeticamente
+- Schema ambiguo: Sito con categorie ordinate per area privato/area azienda, suddivisione per argomenti degli articoli di giornale
+### altre domande
+- Quale struttura organizzativa è più adatta per la navigazione principale? -> *gerarchia*
+- Come deve essere una gerarchia? -> *Deve essere ampia o molto profonda*
+#### Quali sono i pregi e i difetti di avere una gerarchia molto ampia o molto profonda?
+**AMPIEZZA**
+- **PRO**: Buona divisione informazioni e buona varietà, meno click per trovare info, con possibilità e specializzazione per le varie scelte
+- **CONTRO**: possibile sovraccarico cognitivo e tempo di caricamento lungo (ci sono tanti contenuti)
+**PROFONDITÀ**
+- **PRO**: Struttura più organizzata e focalizzata su poche informazioni, accedendo a cose specifiche
+- **CONTRO:** Gli utenti possono avere difficoltà a trovare ciò che stanno cercando
+
+#### Datemi una definizione di area sicura
+Pixel disponibili per visualizzare l'informazione iniziale di una qualsiasi pagina web *senza scroll* da ogni dispositivo; da questa distinguiamo l'area visibile, cioè la prima vista al caricamento di una pagina. Questi pixel dipendono dal tipo di dispositivo e dalle sue dimensioni/impostazioni; per la stampa corrisponde ai punti di schermo stampabili su supporto cartaceo.
+- Di fatto, "above the fold" ed "area sicura" sono la stessa cosa e sono un fattore di grande impatto come prima impressione per l'utente web.
+###### Cosa mettere "above the fold"
+- tutto, ma non è realistico
+	- identidicazione del sito: titolo, logo
+	- Parte di navigazione principale: menù o menù hamburger
+	- Contenuti informativi più importanti
+
+#### Per la progettazione di un interfaccia mobile si deve considerare un utente come?
+poco attento, magari con le mani occupate o in movimento; pensarlo come un occhio e un pollice. *Quindi sarebbe meglio per telefono fare pulsanti grandi e testi grandi*
+
+### Associa ad ogni punto di controllo che hanno uno schermo uguale o inferiore a quel numero di pixel:
+- 320px: *piccoli schermi, telefoni usati in modalità portrait*
+- 480px: *piccoli schermi, telefoni usati in modalità landscape*
+- 600px: *piccoli tablet usati in portrait*
+- 768px: *tablet da 10 pollici usati in portrait*
+- 1024px: *tablet usati in landscape, piccoli desktop o portatili, o una finestra che occupa non tutto lo schermo*
+- 1200px: *schermi grandi, computer ad alta definizione desktop*
+#### Il layout a schede va incontro a problemi di manutenzione nel tempo
+- Con l'aumentare del numero di schede, può diventare difficile per gli utenti navigare e trovare i contenuti che stanno cercando. Ciò può generare confusione e frustazione e può richiedere uno sforzo significativo per riorganizzare ristrutturare il layout a schede al fine di renderlo più facile da usare
+- Quando i contenuti vengono aggiunti, rimossi o modificati, può essere necessario aggiornare il layout a schede per riflettere tali cambiamenti. Ciò può comportare l'aggiornamento delle etichette e del contenuto delle singole schede, nonchè l'aggiunta o la rimozione di schede, se necessario. Questo richiede tempo e un'attenta cura nei dettagli per garantire che il layout a schede rimanga organizzato e facile da usare.
+- Possono incorrere in problemi di manutenzione se non sono progettati tenendo conto dell'accessibilità. Ad esempio, i layout a schede possono non essere facilmente navigabili dagli utenti con disabilità visive o non funzionare bene su tutti i dispositivi con schermi piccoli. In questi casi, potrebbe essere necessario uno sforzo significativo per rendere il layout a schede più accessibile a una gamma di utenti più ampia.
+- 
