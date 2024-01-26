@@ -103,7 +103,7 @@ l'attenzione all'accessibilità, in molti casi, fa parte delle buone regole di p
 - Sono stati definiti 3 livelli di conformità:
 	- Livello di conformità:"**A**" conforme a tutti i punti di controllo di priorità 1
 	- Livello di conformità: "**Doppia A**"(**AA**) conforme a tutti i punti di controllo di priorità 1 e 2
-	- Livello di conformità: "**Tripla A"(**AAA***) conforme a tutti i punti di controllo di priorità 1, 2 e 3
+	- Livello di conformità: "**Tripla A**"(**AAA**) conforme a tutti i punti di controllo di priorità 1, 2 e 3
 
 ## I 4 principi fondamentali introdotti dalle WCAG 2.0
 - Un servizio è accessibile quando è **PURO**:
