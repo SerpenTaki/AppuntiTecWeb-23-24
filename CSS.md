@@ -150,18 +150,18 @@ a {color:blue} (0,0,1)
 `a:link:hover{ font-size: 2em }`
 `selettore:pseudoclasse{ dichiarazioni }`
 
-Pseudoclasse | Risultato
--------------|-----------
-:link | link non visitato
-:visited|link visitato
-:active|link attivo
-:hover|vi si trova sopra il mouse
-:focus | elemento attivo (tab)
-:first|prima pag per media paginati
-:left| pagine di sinistra
-:right| pagine di destra
-:first-child|prima occorrenza
-:lang|seleziona una lingua
+| Pseudoclasse | Risultato                    |
+| ------------ | ---------------------------- |
+| :link        | link non visitato            |
+| :visited     | link visitato                |
+| :active      | link attivo                  |
+| :hover       | vi si trova sopra il mouse   |
+| :focus       | elemento attivo (tab)        |
+| :first       | prima pag per media paginati |
+| :left        | pagine di sinistra           |
+| :right       | pagine di destra             |
+| :first-child | prima occorrenza             |
+| :lang        | seleziona una lingua         |
 
 ### Pseudoelementi
 - **C**onsentono un controllo approfondito sui formati tipografici degli elementi dei blocchi
